@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    RAVELOSON Juvenal
    DIGITAL ARCHITECT
    MAIN JAVASCRIPT
@@ -8,349 +8,365 @@
 
 
 /* =========================================================
-   ELEMENTS
+   DOM READY
 ========================================================= */
 
-const heroBackgrounds =
-    document.querySelectorAll(".hero-bg");
+document.addEventListener("DOMContentLoaded", () => {
 
-const thumbnails =
-    document.querySelectorAll(".thumb");
+    initMobileMenu();
 
-const menuToggle =
-    document.getElementById("menuToggle");
+    initBackgroundCarousel();
 
-const mainNav =
-    document.getElementById("mainNav");
+    initScrollNavigation();
 
-const navLinks =
-    document.querySelectorAll("nav a");
+    initRevealAnimation();
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+    initHeaderScroll();
 
+    initLanguage();
 
-/* =========================================================
-   HERO BACKGROUND CAROUSEL
-========================================================= */
-
-let currentBackground = 0;
-
-let backgroundTimer;
-
-
-function changeBackground(index) {
-
-    if (!heroBackgrounds.length) {
-        return;
-    }
-
-
-    if (
-        index < 0 ||
-        index >= heroBackgrounds.length
-    ) {
-        return;
-    }
-
-
-    heroBackgrounds.forEach(
-        (background, i) => {
-
-            background.classList.toggle(
-                "active",
-                i === index
-            );
-
-        }
-    );
-
-
-    thumbnails.forEach(
-        (thumbnail, i) => {
-
-            thumbnail.classList.toggle(
-                "active",
-                i === index
-            );
-
-        }
-    );
-
-
-    currentBackground = index;
-}
-
-
-/* =========================================================
-   AUTOMATIC BACKGROUND
-========================================================= */
-
-function startBackgroundCarousel() {
-
-    clearInterval(backgroundTimer);
-
-
-    backgroundTimer = setInterval(
-        () => {
-
-            let next =
-                currentBackground + 1;
-
-
-            if (
-                next >= heroBackgrounds.length
-            ) {
-                next = 0;
-            }
-
-
-            changeBackground(next);
-
-        },
-        6000
-    );
-}
-
-
-/* =========================================================
-   THUMBNAIL CLICK
-========================================================= */
-
-thumbnails.forEach(
-    thumbnail => {
-
-        thumbnail.addEventListener(
-            "click",
-            () => {
-
-                const index =
-                    Number(
-                        thumbnail.dataset.bgIndex
-                    );
-
-
-                changeBackground(index);
-
-                startBackgroundCarousel();
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   START HERO CAROUSEL
-========================================================= */
-
-if (heroBackgrounds.length > 1) {
-
-    changeBackground(0);
-
-    startBackgroundCarousel();
-
-}
+});
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-if (menuToggle && mainNav) {
+function initMobileMenu() {
 
-    menuToggle.addEventListener(
-        "click",
-        () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
 
-            const isOpen =
-                mainNav.classList.toggle("active");
+    if (!menuToggle || !mainNav) {
+        return;
+    }
 
+
+    menuToggle.addEventListener("click", () => {
+
+        const isOpen =
+            mainNav.classList.toggle("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+
+        menuToggle.innerHTML = isOpen
+            ? '<i class="fa-solid fa-xmark"></i>'
+            : '<i class="fa-solid fa-bars"></i>';
+
+    });
+
+
+    const navLinks =
+        mainNav.querySelectorAll("a");
+
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mainNav.classList.remove("active");
 
             menuToggle.setAttribute(
                 "aria-expanded",
-                String(isOpen)
+                "false"
             );
 
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
 
-            const icon =
-                menuToggle.querySelector("i");
+        });
+
+    });
 
 
-            if (icon) {
+    document.addEventListener("click", event => {
 
-                icon.className =
-                    isOpen
-                        ? "fa-solid fa-xmark"
-                        : "fa-solid fa-bars";
+        const clickedInsideMenu =
+            mainNav.contains(event.target);
 
-            }
+        const clickedToggle =
+            menuToggle.contains(event.target);
+
+
+        if (
+            !clickedInsideMenu &&
+            !clickedToggle &&
+            mainNav.classList.contains("active")
+        ) {
+
+            mainNav.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
 
         }
-    );
+
+    });
+
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 950) {
+
+            mainNav.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
+
+        }
+
+    });
 
 }
 
 
 /* =========================================================
-   CLOSE MOBILE MENU AFTER CLICK
+   BACKGROUND CAROUSEL
 ========================================================= */
 
-navLinks.forEach(
-    link => {
+function initBackgroundCarousel() {
 
-        link.addEventListener(
-            "click",
-            () => {
+    const backgrounds =
+        document.querySelectorAll(".hero-bg");
 
-                if (!mainNav) {
-                    return;
-                }
+    const thumbnails =
+        document.querySelectorAll(".thumb");
 
 
-                mainNav.classList.remove(
-                    "active"
-                );
+    if (!backgrounds.length || !thumbnails.length) {
+        return;
+    }
 
 
-                if (menuToggle) {
+    let currentIndex = 0;
 
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
+    let autoplay;
 
 
-                    const icon =
-                        menuToggle.querySelector("i");
+    function changeBackground(index) {
+
+        if (
+            index < 0 ||
+            index >= backgrounds.length
+        ) {
+            return;
+        }
 
 
-                    if (icon) {
+        backgrounds.forEach(bg => {
 
-                        icon.className =
-                            "fa-solid fa-bars";
+            bg.classList.remove("active");
 
+        });
+
+
+        thumbnails.forEach(thumb => {
+
+            thumb.classList.remove("active");
+
+        });
+
+
+        backgrounds[index].classList.add("active");
+
+        thumbnails[index].classList.add("active");
+
+
+        currentIndex = index;
+
+    }
+
+
+    function nextBackground() {
+
+        const nextIndex =
+            (currentIndex + 1) %
+            backgrounds.length;
+
+        changeBackground(nextIndex);
+
+    }
+
+
+    function startAutoplay() {
+
+        clearInterval(autoplay);
+
+        autoplay =
+            setInterval(
+                nextBackground,
+                6000
+            );
+
+    }
+
+
+    thumbnails.forEach((thumb, index) => {
+
+        thumb.addEventListener("click", () => {
+
+            changeBackground(index);
+
+            startAutoplay();
+
+        });
+
+    });
+
+
+    changeBackground(0);
+
+    startAutoplay();
+
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION ON SCROLL
+========================================================= */
+
+function initScrollNavigation() {
+
+    const sections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
+    const navLinks =
+        document.querySelectorAll(
+            "#mainNav a[href^='#']"
+        );
+
+
+    if (!sections.length || !navLinks.length) {
+        return;
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting) {
+                        return;
                     }
 
-                }
 
+                    const id =
+                        entry.target.getAttribute("id");
+
+
+                    navLinks.forEach(link => {
+
+                        link.classList.remove("active");
+
+
+                        const href =
+                            link.getAttribute("href");
+
+
+                        if (
+                            href === `#${id}`
+                        ) {
+
+                            link.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    });
+
+                });
+
+            },
+            {
+                rootMargin:
+                    "-35% 0px -55% 0px",
+
+                threshold: 0
             }
         );
 
-    }
-);
 
+    sections.forEach(section => {
 
-/* =========================================================
-   ACTIVE NAVIGATION
-========================================================= */
+        observer.observe(section);
 
-const sections =
-    document.querySelectorAll(
-        "main section[id]"
-    );
-
-
-function updateActiveNavigation() {
-
-    const scrollPosition =
-        window.scrollY +
-        window.innerHeight * .35;
-
-
-    let currentSection = "";
-
-
-    sections.forEach(
-        section => {
-
-            const top =
-                section.offsetTop;
-
-            const height =
-                section.offsetHeight;
-
-
-            if (
-                scrollPosition >= top &&
-                scrollPosition < top + height
-            ) {
-
-                currentSection =
-                    section.id;
-
-            }
-
-        }
-    );
-
-
-    navLinks.forEach(
-        link => {
-
-            const target =
-                link.getAttribute("href");
-
-
-            link.classList.toggle(
-                "active",
-                target ===
-                `#${currentSection}`
-            );
-
-        }
-    );
+    });
 
 }
-
-
-/* =========================================================
-   SCROLL EVENT
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    updateActiveNavigation,
-    {
-        passive: true
-    }
-);
-
-
-updateActiveNavigation();
 
 
 /* =========================================================
    REVEAL ANIMATION
 ========================================================= */
 
-if ("IntersectionObserver" in window) {
+function initRevealAnimation() {
+
+    const elements =
+        document.querySelectorAll(".reveal");
+
+
+    if (!elements.length) {
+        return;
+    }
+
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        elements.forEach(element => {
+
+            element.classList.add("visible");
+
+        });
+
+        return;
+
+    }
+
 
     const observer =
         new IntersectionObserver(
             entries => {
 
-                entries.forEach(
-                    entry => {
+                entries.forEach(entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
+                        observer.unobserve(
+                            entry.target
+                        );
 
                     }
-                );
+
+                });
 
             },
             {
@@ -359,25 +375,61 @@ if ("IntersectionObserver" in window) {
         );
 
 
-    revealElements.forEach(
-        element => {
+    elements.forEach(element => {
 
-            observer.observe(element);
+        observer.observe(element);
 
-        }
-    );
+    });
 
-} else {
+}
 
-    revealElements.forEach(
-        element => {
 
-            element.classList.add(
-                "visible"
+/* =========================================================
+   HEADER SCROLL EFFECT
+========================================================= */
+
+function initHeaderScroll() {
+
+    const header =
+        document.getElementById(
+            "siteHeader"
+        );
+
+
+    if (!header) {
+        return;
+    }
+
+
+    function updateHeader() {
+
+        if (window.scrollY > 30) {
+
+            header.classList.add(
+                "scrolled"
+            );
+
+        } else {
+
+            header.classList.remove(
+                "scrolled"
             );
 
         }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        {
+            passive: true
+        }
     );
+
+
+    updateHeader();
 
 }
 
@@ -390,32 +442,23 @@ const translations = {
 
     fr: {
 
-        nav_home:
-            "ACCUEIL",
+        nav_home: "ACCUEIL",
 
-        nav_expertise:
-            "EXPERTISE",
+        nav_expertise: "EXPERTISE",
 
-        nav_tech:
-            "TECH STACK",
+        nav_tech: "TECH STACK",
 
-        nav_solutions:
-            "SOLUTIONS",
+        nav_solutions: "SOLUTIONS",
 
-        nav_process:
-            "PROCESS",
+        nav_process: "PROCESS",
 
-        nav_about:
-            "À PROPOS",
+        nav_about: "À PROPOS",
 
-        nav_contact:
-            "CONTACT",
+        nav_contact: "CONTACT",
 
-        download_cv:
-            "TÉLÉCHARGER CV",
+        download_cv: "TÉLÉCHARGER CV",
 
-        hello:
-            "Bonjour, je suis",
+        hello: "Bonjour, je suis",
 
         hero_description:
             "J'accompagne les entreprises dans leur transformation numérique grâce à des solutions innovantes, performantes et sécurisées.",
@@ -437,32 +480,23 @@ const translations = {
 
     en: {
 
-        nav_home:
-            "HOME",
+        nav_home: "HOME",
 
-        nav_expertise:
-            "EXPERTISE",
+        nav_expertise: "EXPERTISE",
 
-        nav_tech:
-            "TECH STACK",
+        nav_tech: "TECH STACK",
 
-        nav_solutions:
-            "SOLUTIONS",
+        nav_solutions: "SOLUTIONS",
 
-        nav_process:
-            "PROCESS",
+        nav_process: "PROCESS",
 
-        nav_about:
-            "ABOUT",
+        nav_about: "ABOUT",
 
-        nav_contact:
-            "CONTACT",
+        nav_contact: "CONTACT",
 
-        download_cv:
-            "DOWNLOAD CV",
+        download_cv: "DOWNLOAD CV",
 
-        hello:
-            "Hello, I am",
+        hello: "Hello, I am",
 
         hero_description:
             "I help businesses accelerate their digital transformation through innovative, high-performance and secure solutions.",
@@ -477,12 +511,16 @@ const translations = {
             "EXPERTISE",
 
         expertise_sub:
-            "Comprehensive expertise dedicated to your digital transformation."
+            "Complete expertise to support your digital transformation."
 
     }
 
 };
 
+
+/* =========================================================
+   SET LANGUAGE
+========================================================= */
 
 function setLanguage(language) {
 
@@ -493,41 +531,41 @@ function setLanguage(language) {
     }
 
 
-    document.documentElement.lang =
-        language;
-
-
     const elements =
         document.querySelectorAll(
             "[data-key]"
         );
 
 
-    elements.forEach(
-        element => {
+    elements.forEach(element => {
 
-            const key =
-                element.dataset.key;
+        const key =
+            element.getAttribute(
+                "data-key"
+            );
 
 
-            if (
-                translations[language][key]
-            ) {
+        if (
+            translations[language][key]
+        ) {
 
-                element.textContent =
-                    translations[language][key];
-
-            }
+            element.textContent =
+                translations[language][key];
 
         }
-    );
+
+    });
 
 
     const frButton =
-        document.getElementById("btn-fr");
+        document.getElementById(
+            "btn-fr"
+        );
 
     const enButton =
-        document.getElementById("btn-en");
+        document.getElementById(
+            "btn-en"
+        );
 
 
     if (frButton) {
@@ -550,8 +588,12 @@ function setLanguage(language) {
     }
 
 
+    document.documentElement.lang =
+        language;
+
+
     localStorage.setItem(
-        "juvenal-language",
+        "raveloson-language",
         language
     );
 
@@ -562,86 +604,75 @@ function setLanguage(language) {
    LOAD SAVED LANGUAGE
 ========================================================= */
 
-const savedLanguage =
-    localStorage.getItem(
-        "juvenal-language"
-    );
+function initLanguage() {
+
+    const savedLanguage =
+        localStorage.getItem(
+            "raveloson-language"
+        );
 
 
-if (
-    savedLanguage &&
-    translations[savedLanguage]
-) {
+    if (
+        savedLanguage === "en" ||
+        savedLanguage === "fr"
+    ) {
 
-    setLanguage(savedLanguage);
+        setLanguage(
+            savedLanguage
+        );
 
-} else {
+    } else {
 
-    setLanguage("fr");
+        setLanguage("fr");
+
+    }
 
 }
 
 
 /* =========================================================
-   SMOOTH ANCHOR FALLBACK
+   ESCAPE KEY
 ========================================================= */
 
-document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(
-        link => {
+document.addEventListener(
+    "keydown",
+    event => {
 
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        link.getAttribute("href");
+        if (event.key !== "Escape") {
+            return;
+        }
 
 
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
             );
 
+        const mainNav =
+            document.getElementById(
+                "mainNav"
+            );
+
+
+        if (
+            menuToggle &&
+            mainNav &&
+            mainNav.classList.contains("active")
+        ) {
+
+            mainNav.classList.remove(
+                "active"
+            );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
+
         }
-    );
 
-
-/* =========================================================
-   PAGE READY
-========================================================= */
-
-document.documentElement.classList.add(
-    "js-ready"
-);
-
-
-console.log(
-    "RAVELOSON Juvenal | Digital Architect — System Online"
+    }
 );
