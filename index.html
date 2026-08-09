@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>RAVELOSON Juvenal | Digital Architect</title>
@@ -12,6 +15,7 @@
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
@@ -24,24 +28,2005 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     >
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --bg: #050811;
+    --bg2: #080d18;
+    --card: #0b1120;
+
+    --border: #17233d;
+
+    --text: #ffffff;
+    --muted: #8c9ba5;
+
+    --accent-blue: #0075ff;
+    --accent-cyan: #00d2ff;
+
+    --node: #68a063;
+    --python: #3776ab;
+    --php: #777bb4;
+
+    --html: #e34f26;
+    --css: #1572b6;
+    --javascript: #f7df1e;
+    --react: #61dafb;
+
+    --mysql: #4479a1;
+    --postgresql: #336791;
+    --mongodb: #47a248;
+
+    --aws: #ff9900;
+    --azure: #0078d4;
+    --docker: #2496ed;
+    --nginx: #009639;
+    --cicd: #a855f7;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: 'Inter', sans-serif;
+
+    background: #050811;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 72px;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background: rgba(5,8,17,.94);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.logo span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: .58rem;
+
+    letter-spacing: 2px;
+}
+
+nav ul {
+
+    list-style: none;
+
+    display: flex;
+
+    gap: 22px;
+}
+
+nav a {
+
+    color: var(--muted);
+
+    font-size: .72rem;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+}
+
+nav a:hover,
+nav a.active {
+
+    color: var(--accent-cyan);
+}
+
+.nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.lang-switch {
+
+    display: flex;
+
+    padding: 3px;
+
+    border-radius: 5px;
+
+    background: #0c1321;
+
+    border: 1px solid var(--border);
+}
+
+.lang-btn {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    padding: 5px 8px;
+
+    border-radius: 3px;
+
+    font-size: .7rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.lang-btn.active {
+
+    background: var(--accent-blue);
+
+    color: white;
+}
+
+.btn-cv {
+
+    border: 1px solid var(--accent-blue);
+
+    padding: 8px 13px;
+
+    border-radius: 5px;
+
+    font-size: .7rem;
+
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.btn-cv:hover {
+
+    background: var(--accent-blue);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 120px 5% 70px;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    background: #030508;
+}
+
+
+/* =========================================================
+   BACKGROUND SYSTEM
+========================================================= */
+
+.hero-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -10;
+
+    overflow: hidden;
+
+    background: #030508;
+}
+
+
+/* Individual background images */
+
+.hero-bg {
+
+    position: absolute;
+
+    inset: -3%;
+
+    width: 106%;
+
+    height: 106%;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    transform: scale(1.04);
+
+    transition:
+        opacity 1.6s ease-in-out,
+        transform 6s ease-in-out;
+
+    filter:
+        brightness(.58)
+        saturate(.82)
+        contrast(1.08);
+}
+
+
+/* active image */
+
+.hero-bg.active {
+
+    opacity: 1;
+
+    transform: scale(1.09);
+}
+
+
+/* Dark cinematic overlay */
+
+.hero-background::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(3,6,13,.96) 0%,
+            rgba(3,6,13,.84) 30%,
+            rgba(3,6,13,.60) 60%,
+            rgba(3,6,13,.68) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(2,5,12,.35),
+            rgba(2,5,12,.20) 50%,
+            rgba(2,5,12,.80)
+        );
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BLUE ATMOSPHERIC LIGHT
+========================================================= */
+
+.hero-light {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -5;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at 52% 48%,
+            rgba(0,150,255,.08),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 90% 35%,
+            rgba(0,100,255,.10),
+            transparent 32%
+        );
+}
+
+
+/* =========================================================
+   BLUE GLOW
+========================================================= */
+
+.hero-glow {
+
+    position: absolute;
+
+    left: 18%;
+
+    bottom: -20%;
+
+    width: 55vw;
+
+    height: 45vh;
+
+    border-radius: 50%;
+
+    background: rgba(0,110,255,.13);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    animation: glowMove 10s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   AMBIENT DIGITAL DETAILS — no scan
+========================================================= */
+.hero-ambient {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hero-ambient::before {
+    content: '';
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: 7%;
+    top: 10%;
+    border-radius: 50%;
+    border: 1px solid rgba(0,180,255,.08);
+    box-shadow: 0 0 80px rgba(0,130,255,.045), inset 0 0 80px rgba(0,130,255,.025);
+    animation: ambientFloat 12s ease-in-out infinite alternate;
+}
+
+.hero-ambient::after {
+    content: '';
+    position: absolute;
+    right: 12%;
+    top: 22%;
+    width: 280px;
+    height: 180px;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0,210,255,.65) 0 2px, transparent 3px),
+        radial-gradient(circle at 42% 62%, rgba(0,160,255,.42) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 28%, rgba(255,255,255,.35) 0 1px, transparent 2px),
+        linear-gradient(135deg, transparent 48%, rgba(0,190,255,.09) 49%, transparent 50%),
+        linear-gradient(45deg, transparent 48%, rgba(0,190,255,.06) 49%, transparent 50%);
+    background-size: auto, auto, auto, 46px 46px, 58px 58px;
+    opacity: .7;
+    animation: ambientDrift 8s ease-in-out infinite alternate;
+}
+
+@keyframes ambientFloat {
+    from { transform: translate3d(0, 0, 0) scale(.98); opacity: .65; }
+    to { transform: translate3d(-14px, 10px, 0) scale(1.02); opacity: .95; }
+}
+
+@keyframes ambientDrift {
+    from { transform: translate3d(0, 0, 0); opacity: .48; }
+    to { transform: translate3d(-12px, 8px, 0); opacity: .82; }
+}
+
+@media (max-width: 800px) {
+    .hero-ambient { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-ambient::before,
+    .hero-ambient::after { animation: none; }
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero > *:not(.hero-background):not(.hero-light):not(.hero-glow) {
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.hero-container {
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    position: relative;
+
+    z-index: 5;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+}
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero-text {
+
+    animation:
+        heroText
+        1s ease both;
+}
+
+.hero-text h3 {
+
+    color: var(--accent-cyan);
+
+    font-size: 1rem;
+
+    margin-bottom: 12px;
+
+    font-weight: 600;
+}
+
+.hero-text h1 {
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    line-height: .95;
+
+    font-weight: 800;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 15px;
+}
+
+.hero-text h1 span {
+
+    color: var(--accent-blue);
+}
+
+.hero-text h2 {
+
+    color: var(--muted);
+
+    font-size: .85rem;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 22px;
+}
+
+.hero-text p {
+
+    max-width: 510px;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: .88rem;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.hero-btns {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+
+    background: var(--accent-blue);
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    font-size: .75rem;
+
+    font-weight: 700;
+
+    transition: .35s ease;
+}
+
+.btn-primary:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,117,255,.25);
+}
+
+.btn-outline {
+
+    background:
+        rgba(11,17,32,.75);
+
+    border:
+        1px solid var(--border);
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    font-size: .75rem;
+
+    font-weight: 700;
+
+    transition: .35s ease;
+}
+
+.btn-outline:hover {
+
+    border-color:
+        var(--accent-cyan);
+
+    color:
+        var(--accent-cyan);
+}
+
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.social-links {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.social-links a {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: rgba(18,24,36,.88);
+
+    border:
+        1px solid #1e293b;
+
+    color: #94a3b8;
+
+    font-size: 16px;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+}
+
+.social-links a:hover {
+
+    background:
+        var(--accent-blue);
+
+    border-color:
+        var(--accent-blue);
+
+    color: white;
+
+    transform:
+        translateY(-3px);
+}
+
+.social-links a .fa-x-twitter {
+
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+.social-links a .fa-github {
+
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   HERO CAROUSEL
+========================================================= */
+
+.hero-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    animation:
+        heroImage
+        1.2s ease both;
+}
+
+.main-preview {
+
+    width: 100%;
+
+    height: 400px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    background-size: cover;
+
+    background-position: center;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.55);
+
+    background-color: #02060b;
+}
+
+.main-preview.fade-out {
+
+    opacity: 0;
+
+    transform:
+        scale(.985);
+}
+
+.main-preview.fade-in {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+}
+
+.side-thumbnails {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.thumb {
+
+    width: 70px;
+
+    height: 58px;
+
+    border-radius: 6px;
+
+    background-size: cover;
+
+    background-position: center;
+
+    border:
+        2px solid transparent;
+
+    opacity: .5;
+
+    cursor: pointer;
+
+    transition:
+        .35s ease;
+}
+
+.thumb:hover,
+.thumb.active {
+
+    opacity: 1;
+
+    border-color:
+        var(--accent-cyan);
+
+    transform:
+        translateX(-2px);
+
+    box-shadow:
+        0 0 15px rgba(0,210,255,.25);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding:
+        85px 5%;
+}
+
+.section-header {
+
+    margin-bottom: 35px;
+}
+
+.section-title {
+
+    font-size: 1.8rem;
+
+    font-weight: 800;
+}
+
+.section-title span {
+
+    color:
+        var(--accent-blue);
+}
+
+.section-sub {
+
+    color:
+        var(--muted);
+
+    font-size: .82rem;
+
+    margin-top: 7px;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.grid-4 {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 18px;
+}
+
+.card-expertise {
+
+    height: 320px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 20px;
+
+    background-size: cover;
+
+    background-position: center;
+
+    transition:
+        .35s ease;
+}
+
+.card-expertise::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 15%,
+            rgba(5,8,17,.96)
+        );
+}
+
+.card-expertise:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        var(--accent-blue);
+}
+
+.card-num {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 18px;
+
+    color:
+        var(--accent-cyan);
+
+    font-size: .75rem;
+
+    font-weight: 700;
+
+    z-index: 2;
+}
+
+.card-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.card-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background:
+        rgba(0,102,255,.15);
+
+    border:
+        1px solid var(--accent-blue);
+
+    color:
+        var(--accent-cyan);
+
+    margin-bottom: 12px;
+}
+
+.card-content h3 {
+
+    font-size: 1rem;
+
+    margin-bottom: 7px;
+}
+
+.card-content p {
+
+    color:
+        var(--muted);
+
+    font-size: .75rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 12px;
+}
+
+.card-link {
+
+    color:
+        var(--accent-cyan);
+
+    font-size: .7rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SOLUTIONS
+========================================================= */
+
+.solutions-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 18px;
+}
+
+.solution-card {
+
+    min-height: 220px;
+
+    padding: 22px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    transition: .35s ease;
+}
+
+.solution-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--accent-blue);
+}
+
+.about-card {
+
+    min-height: 220px;
+
+    padding: 22px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background-size: cover;
+
+    background-position: center;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+.about-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(5,8,17,.95)
+        );
+}
+
+.about-card-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TECH STACK
+========================================================= */
+
+.tech-card {
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    padding: 25px;
+
+    transition: .35s ease;
+}
+
+.tech-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--accent-blue);
+}
+
+.tech-card h3 {
+
+    font-size: .95rem;
+
+    margin-bottom: 15px;
+}
+
+.tech-icons {
+
+    display: flex;
+
+    gap: 15px;
+
+    font-size: 1.7rem;
+
+    margin-bottom: 15px;
+}
+
+.frontend-html {
+    color: var(--html);
+}
+
+.frontend-css {
+    color: var(--css);
+}
+
+.frontend-js {
+    color: var(--javascript);
+}
+
+.frontend-react {
+    color: var(--react);
+}
+
+.backend-node {
+    color: var(--node);
+}
+
+.backend-python {
+    color: var(--python);
+}
+
+.backend-php {
+    color: var(--php);
+}
+
+.database-mysql {
+    color: var(--mysql);
+}
+
+.database-postgresql {
+    color: var(--postgresql);
+}
+
+.database-mongodb {
+    color: var(--mongodb);
+}
+
+.infrastructure-aws {
+    color: var(--aws);
+}
+
+.infrastructure-azure {
+    color: var(--azure);
+}
+
+.infrastructure-docker {
+    color: var(--docker);
+}
+
+.infrastructure-nginx {
+    color: var(--nginx);
+}
+
+.infrastructure-cicd {
+    color: var(--cicd);
+}
+
+.tech-card p {
+
+    color:
+        var(--muted);
+
+    font-size: .75rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process-steps {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 18px;
+}
+
+.step-card {
+
+    padding: 20px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    display: flex;
+
+    gap: 13px;
+
+    transition: .35s ease;
+}
+
+.step-card:hover {
+
+    border-color:
+        var(--accent-cyan);
+
+    transform:
+        translateY(-3px);
+}
+
+.step-icon {
+
+    min-width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background:
+        rgba(0,210,255,.08);
+
+    color:
+        var(--accent-cyan);
+}
+
+.step-info h4 {
+
+    font-size: .85rem;
+
+    margin-bottom: 5px;
+}
+
+.step-info p {
+
+    color:
+        var(--muted);
+
+    font-size: .7rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    background:
+        #020408;
+
+    border-top:
+        1px solid var(--border);
+
+    padding:
+        60px 5% 20px;
+}
+
+.footer-grid {
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 2fr 2fr;
+
+    gap: 30px;
+}
+
+.footer-col h4 {
+
+    font-size: .75rem;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+
+    list-style: none;
+}
+
+.footer-col li {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        var(--muted);
+
+    font-size: .72rem;
+
+    margin-bottom: 10px;
+}
+
+.footer-col li a:hover {
+
+    color:
+        var(--accent-cyan);
+}
+
+.contact-icon {
+
+    color:
+        var(--accent-cyan);
+}
+
+.cta-box {
+
+    padding: 20px;
+
+    border:
+        1px solid var(--accent-blue);
+
+    background:
+        var(--card);
+
+    border-radius: 9px;
+}
+
+.cta-box h3 {
+
+    color:
+        var(--accent-blue);
+
+    font-size: .8rem;
+
+    margin-bottom: 8px;
+}
+
+.cta-box p {
+
+    color:
+        var(--muted);
+
+    font-size: .72rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
+}
+
+.footer-bottom {
+
+    max-width: 1300px;
+
+    margin:
+        40px auto 0;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    font-size: .7rem;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes scanLine {
+
+    0% {
+        top: -5%;
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .85;
+    }
+
+    92% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 105%;
+        opacity: 0;
+    }
+}
+
+
+@keyframes lightSweep {
+
+    0% {
+
+        background-position:
+            120% 0;
+
+        opacity: .12;
+    }
+
+    50% {
+
+        background-position:
+            0% 0;
+
+        opacity: .75;
+    }
+
+    100% {
+
+        background-position:
+            -120% 0;
+
+        opacity: .12;
+    }
+}
+
+
+@keyframes glowMove {
+
+    from {
+
+        transform:
+            translateX(-5%)
+            translateY(5%);
+
+        opacity: .35;
+    }
+
+    to {
+
+        transform:
+            translateX(25%)
+            translateY(-8%);
+
+        opacity: .7;
+    }
+}
+
+
+@keyframes heroText {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes heroImage {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px) {
+
+    nav {
+        display: none;
+    }
+
+    .grid-4,
+    .solutions-grid,
+    .process-steps {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:800px) {
+
+    .hero-container {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .hero-preview {
+
+        display: none;
+    }
+
+    .hero-text h1 {
+
+        font-size:
+            3.5rem;
+    }
+
+    .hero-bg {
+
+        background-position:
+            58% center;
+    }
+
+    .hero-background::after {
+
+        background:
+
+            linear-gradient(
+                90deg,
+                rgba(3,6,13,.94),
+                rgba(3,6,13,.72)
+            ),
+
+            linear-gradient(
+                180deg,
+                rgba(2,5,12,.35),
+                rgba(2,5,12,.82)
+            );
+    }
+}
+
+
+@media(max-width:600px) {
+
+    header {
+
+        height: 65px;
+
+        padding:
+            0 4%;
+    }
+
+    .btn-cv {
+
+        display: none;
+    }
+
+    .hero {
+
+        padding:
+            110px 7% 60px;
+    }
+
+    .hero-text h1 {
+
+        font-size:
+            2.7rem;
+    }
+
+    .hero-btns {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+    .grid-4,
+    .solutions-grid,
+    .process-steps,
+    .footer-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    section {
+
+        padding:
+            65px 6%;
+    }
+
+    .hero-bg {
+
+        inset: -5%;
+
+        width: 110%;
+
+        height: 110%;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion: reduce) {
+
+    .hero-bg {
+
+        transition: none;
+
+        animation: none;
+    }
+
+    .hero-glow {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   HERO FINAL — SANS GRANDE IMAGE / SANS CAROUSEL
+========================================================= */
+.hero-preview.hero-thumbs-only {
+    justify-content: flex-end;
+    align-items: flex-start;
+    animation: none;
+    min-height: 300px;
+    padding-top: 10px;
+}
+.hero-thumbs-only .side-thumbnails { gap: 10px; }
+.hero-thumbs-only .thumb {
+    width: 88px; height: 58px; cursor: default; opacity: .72;
+}
+.hero-thumbs-only .thumb:hover { transform: none; }
+.hero-background .hero-bg.active {
+    animation: heroSingleBackground 18s ease-in-out infinite alternate;
+    will-change: transform;
+}
+@keyframes heroSingleBackground {
+    0% { transform: scale(1.02) translate3d(0,0,0); }
+    100% { transform: scale(1.07) translate3d(-0.5%,-0.25%,0); }
+}
+@media (max-width:900px) { .hero-preview.hero-thumbs-only { display:none; } }
+@media (prefers-reduced-motion:reduce) { .hero-background .hero-bg.active { animation:none; } }
+
+</style>
+
+
+<style>
+/* =========================================================
+   À PROPOS DE MOI — PHOTO SCAN + BREATHING ON HOVER
+========================================================= */
+.about-card {
+    cursor: pointer;
+    isolation: isolate;
+    transition:
+        transform .45s cubic-bezier(.2,.75,.2,1),
+        border-color .35s ease,
+        box-shadow .45s ease,
+        background-position .45s ease;
+}
+
+/* Scanner lumineux qui traverse la photo au survol */
+.about-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -15%;
+    height: 2px;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0,210,255,.15) 20%,
+        #00d2ff 45%,
+        #ffffff 50%,
+        #00d2ff 55%,
+        rgba(0,210,255,.15) 80%,
+        transparent 100%
+    );
+    box-shadow:
+        0 0 8px rgba(0,210,255,.95),
+        0 0 22px rgba(0,117,255,.75),
+        0 0 45px rgba(0,117,255,.35);
+}
+
+.about-card:hover {
+    transform: translateY(-6px) scale(1.012);
+    border-color: var(--accent-cyan);
+    box-shadow:
+        0 0 0 1px rgba(0,210,255,.15),
+        0 14px 45px rgba(0,70,180,.30);
+    animation: aboutPhotoBreath 2.8s ease-in-out infinite;
+}
+
+.about-card:hover::after {
+    opacity: 1;
+    animation: aboutPhotoScan 2.2s linear infinite;
+}
+
+@keyframes aboutPhotoScan {
+    0%   { top: -10%; }
+    100% { top: 110%; }
+}
+
+/* Petit effet respiration de la photo */
+@keyframes aboutPhotoBreath {
+    0%, 100% {
+        background-size: 100% auto;
+        background-position: center center;
+    }
+    50% {
+        background-size: 106% auto;
+        background-position: center 48%;
+    }
+}
+
+/* Halo discret qui s'active avec le curseur */
+.about-card:hover::before {
+    background:
+        linear-gradient(
+            transparent 0%,
+            rgba(5,8,17,.82) 65%,
+            rgba(5,8,17,.97) 100%
+        );
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-card:hover {
+        animation: none;
+    }
+    .about-card:hover::after {
+        animation: none;
+    }
+}
+</style>
+
+
+<style>
+/* =========================================================
+   HERO EMPTY SPACE — DIGITAL HUD / ARCHITECTURE PANEL
+   Remplit élégamment l'espace libre sans ajouter de grande image
+========================================================= */
+.hero-space-hud {
+    position: absolute;
+    right: 7.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(430px, 34vw);
+    min-height: 285px;
+    padding: 24px;
+    border: 1px solid rgba(0, 210, 255, .16);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(3,10,22,.24), rgba(0,117,255,.055));
+    box-shadow: inset 0 0 45px rgba(0,117,255,.035), 0 0 55px rgba(0,117,255,.045);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+    opacity: .88;
+}
+
+.hero-space-hud::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,.055);
+    border-radius: 8px;
+    background:
+        linear-gradient(rgba(0,210,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,210,255,.055) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.hero-space-hud::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 74px;
+    height: 74px;
+    border: 1px solid rgba(0,210,255,.18);
+    border-radius: 50%;
+    box-shadow: inset 0 0 18px rgba(0,210,255,.05), 0 0 22px rgba(0,210,255,.04);
+}
+
+.hud-topline {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #7ddfff;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.hud-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #8fa4b9;
+    letter-spacing: 1.5px;
+}
+
+.hud-status i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00d2ff;
+    box-shadow: 0 0 12px #00d2ff;
+    animation: hudPulse 1.8s ease-in-out infinite;
+}
+
+.hud-main {
+    position: relative;
+    z-index: 2;
+    margin-top: 42px;
+    max-width: 310px;
+}
+
+.hud-main small {
+    display: block;
+    color: rgba(148,163,184,.78);
+    font-size: .63rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.hud-main strong {
+    display: block;
+    color: rgba(255,255,255,.92);
+    font-size: clamp(1.15rem, 2vw, 1.75rem);
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.hud-main span {
+    display: block;
+    margin-top: 9px;
+    color: #00aef5;
+    font-size: .7rem;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+}
+
+.hud-lines {
+    position: absolute;
+    z-index: 2;
+    left: 24px;
+    bottom: 24px;
+    width: 190px;
+    display: grid;
+    gap: 8px;
+}
+
+.hud-lines div {
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0,210,255,.7), rgba(0,210,255,.04));
+    transform-origin: left;
+    animation: hudData 3s ease-in-out infinite alternate;
+}
+
+.hud-lines div:nth-child(2) { width: 72%; animation-delay: .35s; }
+.hud-lines div:nth-child(3) { width: 88%; animation-delay: .7s; }
+.hud-lines div:nth-child(4) { width: 54%; animation-delay: 1.05s; }
+
+.hud-corner {
+    position: absolute;
+    z-index: 2;
+    right: 24px;
+    bottom: 22px;
+    color: rgba(148,163,184,.55);
+    font: 600 .58rem/1.7 monospace;
+    text-align: right;
+    letter-spacing: 1px;
+}
+
+@keyframes hudPulse {
+    0%,100% { transform: scale(.8); opacity: .55; }
+    50% { transform: scale(1.25); opacity: 1; }
+}
+
+@keyframes hudData {
+    0% { transform: scaleX(.72); opacity: .45; }
+    100% { transform: scaleX(1); opacity: .9; }
+}
+
+@media (max-width: 1100px) {
+    .hero-space-hud {
+        right: 8%;
+        width: 330px;
+    }
+}
+
+@media (max-width: 800px) {
+    .hero-space-hud { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hud-status i,
+    .hud-lines div { animation: none; }
+}
+</style>
+
 </head>
+
 
 <body>
 
-<!-- =========================================================
-HEADER
-========================================================= -->
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
-    <a href="#accueil" class="logo" aria-label="RAVELOSON Juvenal">
-        RAVELOSON
-        <span>DIGITAL ARCHITECT</span>
-    </a>
+    <div class="logo">
 
-    <nav id="mainNav">
+        RAVELOSON
+
+        <span>
+            DIGITAL ARCHITECT
+        </span>
+
+    </div>
+
+
+    <nav>
+
         <ul>
+
             <li>
                 <a href="#accueil" class="active" data-key="nav_home">
                     ACCUEIL
@@ -83,14 +2068,17 @@ HEADER
                     CONTACT
                 </a>
             </li>
+
         </ul>
+
     </nav>
+
 
     <div class="nav-actions">
 
         <div class="lang-switch">
+
             <button
-                type="button"
                 class="lang-btn active"
                 id="btn-fr"
                 onclick="setLanguage('fr')">
@@ -98,13 +2086,14 @@ HEADER
             </button>
 
             <button
-                type="button"
                 class="lang-btn"
                 id="btn-en"
                 onclick="setLanguage('en')">
                 EN
             </button>
+
         </div>
+
 
         <a
             href="CV_RAVELOSON_Juvenal.pdf"
@@ -116,123 +2105,119 @@ HEADER
             <span data-key="download_cv">
                 TÉLÉCHARGER CV
             </span>
+
         </a>
-
-        <button
-            type="button"
-            id="menuToggle"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="mainNav">
-
-            <i class="fa-solid fa-bars"></i>
-
-        </button>
 
     </div>
 
 </header>
 
 
-<!-- =========================================================
-HERO
-========================================================= -->
 
-<main>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-<section id="accueil" class="hero">
+<section
+    class="hero"
+    id="accueil">
 
-    <!-- IMPORTANT : BACKGROUND -->
+    <!-- BACKGROUND CAROUSEL — le fond suit automatiquement les 5 miniatures -->
+
     <div class="hero-background" aria-hidden="true">
-
-        <div
-            class="hero-bg active"
-            data-bg-index="0"
-            style="background-image:url('assets/images/web-develloppeur.png');">
-        </div>
-
-        <div
-            class="hero-bg"
-            data-bg-index="1"
-            style="background-image:url('assets/images/DATA SYSTEMS.png');">
-        </div>
-
-        <div
-            class="hero-bg"
-            data-bg-index="2"
-            style="background-image:url('assets/images/IT INFRASTRUCTURE.png');">
-        </div>
-
-        <div
-            class="hero-bg"
-            data-bg-index="3"
-            style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');">
-        </div>
-
-        <div
-            class="hero-bg"
-            data-bg-index="4"
-            style="background-image:url('assets/images/web-man.png');">
-        </div>
-
+        <div class="hero-bg active" data-bg-index="0" style="background-image:url('assets/images/web-develloppeur.png');"></div>
+        <div class="hero-bg" data-bg-index="1"></div>
     </div>
 
 
+
+
     <div class="hero-ambient"></div>
+
+
+    <!-- BLUE ATMOSPHERE -->
+
     <div class="hero-light"></div>
+
+
+    <!-- GLOW -->
+
     <div class="hero-glow"></div>
+
 
 
     <div class="hero-container">
 
 
-        <!-- HERO TEXT -->
+        <!-- =================================================
+             HERO TEXT
+        ================================================== -->
 
-        <div class="hero-text reveal">
+        <div class="hero-text">
 
             <h3 data-key="hello">
                 Bonjour, je suis
             </h3>
 
+
             <h1>
+
                 RAVELOSON
+
                 <br>
-                <span>Juvenal</span>
+
+                <span>
+                    Juvenal
+                </span>
+
             </h1>
+
 
             <h2>
                 DIGITAL ARCHITECT
             </h2>
 
+
             <p data-key="hero_description">
+
                 J'accompagne les entreprises dans leur transformation
                 numérique grâce à des solutions innovantes,
                 performantes et sécurisées.
+
             </p>
 
 
             <div class="hero-btns">
 
-                <a href="#solutions" class="btn-primary">
+                <a
+                    href="#solutions"
+                    class="btn-primary">
+
                     <span data-key="projects">
                         DÉCOUVRIR MES PROJETS
                     </span>
 
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </a>
 
-                <a href="#contact" class="btn-outline">
+
+                <a
+                    href="#contact"
+                    class="btn-outline">
+
                     <span data-key="contact_me">
                         ME CONTACTER
                     </span>
 
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
             </div>
 
 
-            <!-- SOCIAL -->
+            <!-- SOCIALS -->
 
             <div class="social-links">
 
@@ -246,6 +2231,7 @@ HERO
 
                 </a>
 
+
                 <a
                     href="https://www.instagram.com/ravelosonjuvenal78/?hl=en"
                     target="_blank"
@@ -255,6 +2241,7 @@ HERO
                     <i class="fa-brands fa-instagram"></i>
 
                 </a>
+
 
                 <a
                     href="https://x.com/RavelosonJ73475"
@@ -266,6 +2253,7 @@ HERO
 
                 </a>
 
+
                 <a
                     href="https://www.linkedin.com/in/raveloson-juvenal-733299246/"
                     target="_blank"
@@ -276,6 +2264,7 @@ HERO
 
                 </a>
 
+
                 <a
                     href="https://github.com/ravelosonjuvenal78-oss/ravelosonjuvenal"
                     target="_blank"
@@ -285,6 +2274,7 @@ HERO
                     <i class="fa-brands fa-github"></i>
 
                 </a>
+
 
                 <a
                     href="mailto:ravelosonjuvenal78@gmail.com"
@@ -299,125 +2289,69 @@ HERO
         </div>
 
 
-        <!-- DIGITAL HUD -->
 
-        <div class="hero-space-hud reveal" aria-hidden="true">
-
+        <!-- DIGITAL HUD — remplit l'espace vide du background -->
+        <div class="hero-space-hud" aria-hidden="true">
             <div class="hud-topline">
-
                 <span>DIGITAL ARCHITECTURE</span>
-
-                <span class="hud-status">
-                    <i></i>
-                    SYSTEM ONLINE
-                </span>
-
+                <span class="hud-status"><i></i> SYSTEM ONLINE</span>
             </div>
-
 
             <div class="hud-main">
-
-                <small>
-                    RAVELOSON / JUVENAL
-                </small>
-
-                <strong>
-                    BUILDING THE<br>
-                    FUTURE
-                </strong>
-
-                <span>
-                    WEB • DATA • INFRASTRUCTURE • AI
-                </span>
-
+                <small>RAVELOSON / JUVENAL</small>
+                <strong>BUILDING THE<br>FUTURE</strong>
+                <span>WEB • DATA • INFRASTRUCTURE • AI</span>
             </div>
-
 
             <div class="hud-lines">
                 <div style="width:92%"></div>
-                <div style="width:76%"></div>
-                <div style="width:58%"></div>
-                <div style="width:82%"></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-
 
             <div class="hud-corner">
                 DIGITAL SYSTEM<br>
                 ARCH / 001<br>
                 STATUS: READY
             </div>
-
         </div>
 
 
-        <!-- BACKGROUND THUMBNAILS -->
-
+        <!-- 5 MINIATURES — clic + changement automatique du background -->
         <div class="hero-preview hero-thumbs-only">
-
-            <div
-                class="side-thumbnails"
-                aria-label="Sélection des backgrounds">
-
-                <button
-                    type="button"
-                    class="thumb active"
-                    data-bg-index="0"
-                    aria-label="Background 1"
-                    style="background-image:url('assets/images/web-develloppeur.png');">
-                </button>
-
-                <button
-                    type="button"
-                    class="thumb"
-                    data-bg-index="1"
-                    aria-label="Background 2"
-                    style="background-image:url('assets/images/DATA SYSTEMS.png');">
-                </button>
-
-                <button
-                    type="button"
-                    class="thumb"
-                    data-bg-index="2"
-                    aria-label="Background 3"
-                    style="background-image:url('assets/images/IT INFRASTRUCTURE.png');">
-                </button>
-
-                <button
-                    type="button"
-                    class="thumb"
-                    data-bg-index="3"
-                    aria-label="Background 4"
-                    style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');">
-                </button>
-
-                <button
-                    type="button"
-                    class="thumb"
-                    data-bg-index="4"
-                    aria-label="Background 5"
-                    style="background-image:url('assets/images/web-man.png');">
-                </button>
-
+            <div class="side-thumbnails" aria-label="Sélection des backgrounds">
+                <button type="button" class="thumb active" data-bg-index="0" aria-label="Background 1" style="background-image:url('assets/images/web-develloppeur.png');"></button>
+                <button type="button" class="thumb" data-bg-index="1" aria-label="Background 2" style="background-image:url('assets/images/DATA SYSTEMS.png');"></button>
+                <button type="button" class="thumb" data-bg-index="2" aria-label="Background 3" style="background-image:url('assets/images/IT INFRASTRUCTURE.png');"></button>
+                <button type="button" class="thumb" data-bg-index="3" aria-label="Background 4" style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');"></button>
+                <button type="button" class="thumb" data-bg-index="4" aria-label="Background 5" style="background-image:url('assets/images/web-man.png');"></button>
             </div>
-
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-EXPERTISE
-========================================================= -->
 
-<section id="expertise" class="content-section">
+<!-- =====================================================
+     EXPERTISE
+===================================================== -->
+
+<section id="expertise">
 
     <div class="section-header">
 
         <div class="section-title">
-            <span data-key="expertise_title">EXPERTISE</span>
+
+            <span data-key="expertise_title">
+                EXPERTISE
+            </span>
+
             <span>///</span>
+
         </div>
 
         <div
@@ -434,11 +2368,16 @@ EXPERTISE
     <div class="grid-4">
 
 
-        <article
-            class="card-expertise reveal"
-            style="background-image:url('assets/images/web-develloppeur.png');">
+        <div
+            class="card-expertise"
+            style="
+                background-image:
+                url('assets/images/web-develloppeur.png');
+            ">
 
-            <span class="card-num">01</span>
+            <span class="card-num">
+                01
+            </span>
 
             <div class="card-content">
 
@@ -446,27 +2385,34 @@ EXPERTISE
                     <i class="fa-solid fa-code"></i>
                 </div>
 
-                <h3>Web Development</h3>
+                <h3>
+                    Web Development
+                </h3>
 
                 <p>
-                    Applications web modernes,
-                    performantes et sur mesure.
+                    Applications web modernes, performantes et sur mesure.
                 </p>
 
-                <a href="#contact" class="card-link">
+                <a href="#" class="card-link">
                     EN SAVOIR PLUS →
                 </a>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article
-            class="card-expertise reveal"
-            style="background-image:url('assets/images/DATA SYSTEMS.png');">
 
-            <span class="card-num">02</span>
+        <div
+            class="card-expertise"
+            style="
+                background-image:
+                url('assets/images/DATA SYSTEMS.png');
+            ">
+
+            <span class="card-num">
+                02
+            </span>
 
             <div class="card-content">
 
@@ -474,27 +2420,34 @@ EXPERTISE
                     <i class="fa-solid fa-database"></i>
                 </div>
 
-                <h3>Data Systems</h3>
+                <h3>
+                    Data Systems
+                </h3>
 
                 <p>
-                    Gestion et analyse des données
-                    pour des décisions éclairées.
+                    Gestion et analyse des données pour des décisions éclairées.
                 </p>
 
-                <a href="#contact" class="card-link">
+                <a href="#" class="card-link">
                     EN SAVOIR PLUS →
                 </a>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article
-            class="card-expertise reveal"
-            style="background-image:url('assets/images/IT INFRASTRUCTURE.png');">
 
-            <span class="card-num">03</span>
+        <div
+            class="card-expertise"
+            style="
+                background-image:
+                url('assets/images/IT INFRASTRUCTURE.png');
+            ">
+
+            <span class="card-num">
+                03
+            </span>
 
             <div class="card-content">
 
@@ -502,27 +2455,34 @@ EXPERTISE
                     <i class="fa-solid fa-server"></i>
                 </div>
 
-                <h3>IT Infrastructure</h3>
+                <h3>
+                    IT Infrastructure
+                </h3>
 
                 <p>
-                    Infrastructures fiables,
-                    sécurisées et évolutives.
+                    Infrastructures fiables, sécurisées et évolutives.
                 </p>
 
-                <a href="#contact" class="card-link">
+                <a href="#" class="card-link">
                     EN SAVOIR PLUS →
                 </a>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article
-            class="card-expertise reveal"
-            style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');">
 
-            <span class="card-num">04</span>
+        <div
+            class="card-expertise"
+            style="
+                background-image:
+                url('assets/images/DIGITAL TRANSFORMATION.png');
+            ">
+
+            <span class="card-num">
+                04
+            </span>
 
             <div class="card-content">
 
@@ -530,42 +2490,48 @@ EXPERTISE
                     <i class="fa-solid fa-cubes"></i>
                 </div>
 
-                <h3>Digital Transformation</h3>
+                <h3>
+                    Digital Transformation
+                </h3>
 
                 <p>
-                    Solutions digitales innovantes
-                    pour accélérer votre croissance.
+                    Solutions digitales innovantes pour accélérer votre croissance.
                 </p>
 
-                <a href="#contact" class="card-link">
+                <a href="#" class="card-link">
                     EN SAVOIR PLUS →
                 </a>
 
             </div>
 
-        </article>
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-TECH STACK
-========================================================= -->
 
-<section id="techstack" class="content-section">
+<!-- =====================================================
+     TECH STACK
+===================================================== -->
+
+<section id="techstack">
 
     <div class="section-header">
 
         <div class="section-title">
+
             TECH STACK
+
             <span>///</span>
+
         </div>
 
         <div class="section-sub">
-            Technologies et outils que j'utilise
-            pour construire des solutions robustes.
+
+            Technologies et outils que j'utilise pour construire des solutions robustes.
+
         </div>
 
     </div>
@@ -574,15 +2540,20 @@ TECH STACK
     <div class="grid-4">
 
 
-        <article class="tech-card reveal">
+        <div class="tech-card">
 
-            <h3>Frontend</h3>
+            <h3>
+                Frontend
+            </h3>
 
             <div class="tech-icons">
 
                 <i class="fa-brands fa-html5 frontend-html"></i>
+
                 <i class="fa-brands fa-css3-alt frontend-css"></i>
+
                 <i class="fa-brands fa-js frontend-js"></i>
+
                 <i class="fa-brands fa-react frontend-react"></i>
 
             </div>
@@ -591,17 +2562,22 @@ TECH STACK
                 HTML5 · CSS3 · JavaScript · React
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="tech-card reveal">
 
-            <h3>Backend</h3>
+        <div class="tech-card">
+
+            <h3>
+                Backend
+            </h3>
 
             <div class="tech-icons">
 
                 <i class="fa-brands fa-node-js backend-node"></i>
+
                 <i class="fa-brands fa-python backend-python"></i>
+
                 <i class="fa-brands fa-php backend-php"></i>
 
             </div>
@@ -610,17 +2586,22 @@ TECH STACK
                 Node.js · Python · PHP
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="tech-card reveal">
 
-            <h3>Database</h3>
+        <div class="tech-card">
+
+            <h3>
+                Database
+            </h3>
 
             <div class="tech-icons">
 
                 <i class="fa-solid fa-database database-mysql"></i>
+
                 <i class="fa-solid fa-database database-postgresql"></i>
+
                 <i class="fa-solid fa-leaf database-mongodb"></i>
 
             </div>
@@ -629,19 +2610,26 @@ TECH STACK
                 MySQL · PostgreSQL · MongoDB
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="tech-card reveal">
 
-            <h3>Infrastructure</h3>
+        <div class="tech-card">
+
+            <h3>
+                Infrastructure
+            </h3>
 
             <div class="tech-icons">
 
                 <i class="fa-brands fa-aws infrastructure-aws"></i>
+
                 <i class="fa-brands fa-microsoft infrastructure-azure"></i>
+
                 <i class="fa-brands fa-docker infrastructure-docker"></i>
+
                 <i class="fa-solid fa-server infrastructure-nginx"></i>
+
                 <i class="fa-solid fa-code-branch infrastructure-cicd"></i>
 
             </div>
@@ -650,28 +2638,34 @@ TECH STACK
                 Docker · AWS · NGINX · CI/CD
             </p>
 
-        </article>
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-SOLUTIONS
-========================================================= -->
 
-<section id="solutions" class="content-section">
+<!-- =====================================================
+     SOLUTIONS
+===================================================== -->
+
+<section id="solutions">
 
     <div class="section-header">
 
         <div class="section-title">
+
             SOLUTIONS
+
             <span>///</span>
+
         </div>
 
         <div class="section-sub">
+
             Des solutions digitales adaptées à vos besoins.
+
         </div>
 
     </div>
@@ -680,92 +2674,132 @@ SOLUTIONS
     <div class="solutions-grid">
 
 
-        <article
-            class="about-card reveal"
+        <div
+            class="about-card"
             id="apropos"
-            style="background-image:url('assets/images/Juvenal-ID.png');">
+            style="
+                background-image:
+                url('assets/images/Juvenal-ID.png');
+            ">
 
             <div class="about-card-content">
 
-                <h3>À PROPOS DE MOI</h3>
+                <h3>
+                    À PROPOS DE MOI
+                </h3>
 
-                <a href="#contact" class="card-link">
+                <a href="#" class="card-link">
                     EN SAVOIR PLUS →
                 </a>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="solution-card reveal">
+
+        <div class="solution-card">
 
             <div class="card-icon">
                 <i class="fa-solid fa-chart-pie"></i>
             </div>
 
-            <h3>DATA SYSTEMS</h3>
+            <h3>
+                DATA SYSTEMS
+            </h3>
 
-            <p>
-                Plateformes de données intelligentes
-                et reporting avancé.
+            <p
+                style="
+                    color:var(--muted);
+                    font-size:.75rem;
+                    margin-top:10px;
+                    line-height:1.5;
+                ">
+
+                Plateformes de données intelligentes et reporting avancé.
+
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="solution-card reveal">
+
+        <div class="solution-card">
 
             <div class="card-icon">
                 <i class="fa-solid fa-network-wired"></i>
             </div>
 
-            <h3>IT INFRASTRUCTURE</h3>
+            <h3>
+                IT INFRASTRUCTURE
+            </h3>
 
-            <p>
-                Conception, déploiement et maintenance
-                d'infrastructures sécurisées.
+            <p
+                style="
+                    color:var(--muted);
+                    font-size:.75rem;
+                    margin-top:10px;
+                    line-height:1.5;
+                ">
+
+                Conception, déploiement et maintenance d'infrastructures sécurisées.
+
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="solution-card reveal">
+
+        <div class="solution-card">
 
             <div class="card-icon">
                 <i class="fa-solid fa-diagram-project"></i>
             </div>
 
-            <h3>DIGITAL TRANSFORMATION</h3>
+            <h3>
+                DIGITAL TRANSFORMATION
+            </h3>
 
-            <p>
-                Accompagnement dans votre transformation
-                digitale de bout en bout.
+            <p
+                style="
+                    color:var(--muted);
+                    font-size:.75rem;
+                    margin-top:10px;
+                    line-height:1.5;
+                ">
+
+                Accompagnement dans votre transformation digitale de bout en bout.
+
             </p>
 
-        </article>
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-PROCESS
-========================================================= -->
 
-<section id="process" class="content-section">
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+
+<section id="process">
 
     <div class="section-header">
 
         <div class="section-title">
+
             PROCESS
+
             <span>///</span>
+
         </div>
 
         <div class="section-sub">
-            Une méthodologie claire pour garantir
-            la réussite de vos projets.
+
+            Une méthodologie claire pour garantir la réussite de vos projets.
+
         </div>
 
     </div>
@@ -774,7 +2808,7 @@ PROCESS
     <div class="process-steps">
 
 
-        <article class="step-card reveal">
+        <div class="step-card">
 
             <div class="step-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -782,19 +2816,21 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>Comprendre</h4>
+                <h4>
+                    Comprendre
+                </h4>
 
                 <p>
-                    Analyse des besoins et définition
-                    des objectifs.
+                    Analyse des besoins et définition des objectifs.
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="step-card reveal">
+
+        <div class="step-card">
 
             <div class="step-icon">
                 <i class="fa-solid fa-sitemap"></i>
@@ -802,19 +2838,21 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>Architecturer</h4>
+                <h4>
+                    Architecturer
+                </h4>
 
                 <p>
-                    Conception de l'architecture
-                    et planification technique.
+                    Conception de l'architecture et planification technique.
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="step-card reveal">
+
+        <div class="step-card">
 
             <div class="step-icon">
                 <i class="fa-solid fa-code-branch"></i>
@@ -822,19 +2860,21 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>Construire</h4>
+                <h4>
+                    Construire
+                </h4>
 
                 <p>
-                    Développement itératif avec qualité
-                    et tests continus.
+                    Développement itératif avec qualité et tests continus.
                 </p>
 
             </div>
 
-        </article>
+        </div>
 
 
-        <article class="step-card reveal">
+
+        <div class="step-card">
 
             <div class="step-icon">
                 <i class="fa-solid fa-rocket"></i>
@@ -842,175 +2882,30 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>Améliorer</h4>
+                <h4>
+                    Améliorer
+                </h4>
 
                 <p>
-                    Déploiement, suivi et amélioration
-                    continue.
+                    Déploiement, suivi et amélioration continue.
                 </p>
 
             </div>
 
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-CONTACT
-========================================================= -->
-
-<section id="contact" class="content-section">
-
-    <div class="section-header">
-
-        <div class="section-title">
-            CONTACT
-            <span>///</span>
-        </div>
-
-        <div class="section-sub">
-            Un projet ? Une idée ? Parlons-en.
-        </div>
-
-    </div>
-
-
-    <div class="contact-grid">
-
-
-        <div class="contact-panel">
-
-            <div class="contact-item">
-
-                <div class="contact-item-icon">
-                    <i class="fa-regular fa-envelope"></i>
-                </div>
-
-                <div>
-                    <small>EMAIL</small>
-
-                    <a href="mailto:ravelosonjuvenal78@gmail.com">
-                        ravelosonjuvenal78@gmail.com
-                    </a>
-                </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <div class="contact-item-icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-
-                <div>
-                    <small>TÉLÉPHONE</small>
-
-                    <a href="tel:+261337060157">
-                        +261 33 70 601 57
-                    </a>
-                </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <div class="contact-item-icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-
-                <div>
-                    <small>TÉLÉPHONE</small>
-
-                    <a href="tel:+261336194501">
-                        +261 33 61 945 01
-                    </a>
-                </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <div class="contact-item-icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-
-                <div>
-                    <small>TÉLÉPHONE</small>
-
-                    <a href="tel:+261344286430">
-                        +261 34 42 864 30
-                    </a>
-                </div>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <div class="contact-item-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                </div>
-
-                <div>
-                    <small>LOCALISATION</small>
-
-                    <span>
-                        TSIHOMBE-Ville, Madagascar
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="contact-cta">
-
-            <span>
-                DIGITAL ARCHITECTURE
-            </span>
-
-            <h3>
-                CONSTRUISONS<br>
-                VOTRE FUTUR.
-            </h3>
-
-            <p>
-                Discutons de vos idées et construisons
-                ensemble des solutions digitales
-                performantes, sécurisées et durables.
-            </p>
-
-            <a
-                href="mailto:ravelosonjuvenal78@gmail.com"
-                class="btn-primary">
-
-                ME CONTACTER
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
         </div>
 
     </div>
 
 </section>
 
-</main>
 
 
-<!-- =========================================================
-FOOTER
-========================================================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-<footer>
+<footer id="contact">
+
 
     <div class="footer-grid">
 
@@ -1018,13 +2913,26 @@ FOOTER
         <div class="footer-col">
 
             <div class="logo">
+
                 RAVELOSON
-                <span>DIGITAL ARCHITECT</span>
+
+                <span>
+                    DIGITAL ARCHITECT
+                </span>
+
             </div>
 
-            <p class="footer-description">
+            <p
+                style="
+                    color:var(--muted);
+                    font-size:.75rem;
+                    line-height:1.6;
+                    margin:15px 0;
+                ">
+
                 Passionné par la technologie et l'innovation,
                 j'aide les entreprises à bâtir leur avenir digital.
+
             </p>
 
 
@@ -1033,8 +2941,7 @@ FOOTER
                 <a
                     href="https://web.facebook.com/profile.php?id=61581641450078"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook">
+                    rel="noopener noreferrer">
 
                     <i class="fa-brands fa-facebook-f"></i>
 
@@ -1043,8 +2950,7 @@ FOOTER
                 <a
                     href="https://www.instagram.com/ravelosonjuvenal78/?hl=en"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram">
+                    rel="noopener noreferrer">
 
                     <i class="fa-brands fa-instagram"></i>
 
@@ -1053,8 +2959,7 @@ FOOTER
                 <a
                     href="https://x.com/RavelosonJ73475"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="X">
+                    rel="noopener noreferrer">
 
                     <i class="fa-brands fa-x-twitter"></i>
 
@@ -1063,8 +2968,7 @@ FOOTER
                 <a
                     href="https://www.linkedin.com/in/raveloson-juvenal-733299246/"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn">
+                    rel="noopener noreferrer">
 
                     <i class="fa-brands fa-linkedin-in"></i>
 
@@ -1073,16 +2977,14 @@ FOOTER
                 <a
                     href="https://github.com/ravelosonjuvenal78-oss/ravelosonjuvenal"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub">
+                    rel="noopener noreferrer">
 
                     <i class="fa-brands fa-github"></i>
 
                 </a>
 
                 <a
-                    href="mailto:ravelosonjuvenal78@gmail.com"
-                    aria-label="Email">
+                    href="mailto:ravelosonjuvenal78@gmail.com">
 
                     <i class="fa-regular fa-envelope"></i>
 
@@ -1093,34 +2995,37 @@ FOOTER
         </div>
 
 
+
         <div class="footer-col">
 
-            <h4>NAVIGATION</h4>
+            <h4>
+                NAVIGATION
+            </h4>
 
             <ul>
 
                 <li>
-                    <a href="#accueil">Accueil</a>
+                    <a href="#accueil">
+                        Accueil
+                    </a>
                 </li>
 
                 <li>
-                    <a href="#expertise">Expertise</a>
+                    <a href="#expertise">
+                        Expertise
+                    </a>
                 </li>
 
                 <li>
-                    <a href="#techstack">Tech Stack</a>
+                    <a href="#techstack">
+                        Tech Stack
+                    </a>
                 </li>
 
                 <li>
-                    <a href="#solutions">Solutions</a>
-                </li>
-
-                <li>
-                    <a href="#process">Process</a>
-                </li>
-
-                <li>
-                    <a href="#contact">Contact</a>
+                    <a href="#process">
+                        Process
+                    </a>
                 </li>
 
             </ul>
@@ -1128,15 +3033,21 @@ FOOTER
         </div>
 
 
+
         <div class="footer-col">
 
-            <h4>EXPERTISE</h4>
+            <h4>
+                EXPERTISE
+            </h4>
 
             <ul>
 
                 <li>Web Development</li>
+
                 <li>Data Systems</li>
+
                 <li>IT Infrastructure</li>
+
                 <li>Digital Transformation</li>
 
             </ul>
@@ -1144,48 +3055,85 @@ FOOTER
         </div>
 
 
+
         <div class="footer-col">
 
-            <h4>CONTACT</h4>
+            <h4>
+                CONTACT
+            </h4>
 
             <ul>
 
                 <li>
+
                     <i class="fa-regular fa-envelope contact-icon"></i>
+
                     <a href="mailto:ravelosonjuvenal78@gmail.com">
+
                         ravelosonjuvenal78@gmail.com
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <i class="fa-solid fa-phone contact-icon"></i>
-                    <a href="tel:+261337060157">
-                        +261 33 70 601 57
-                    </a>
+
+                    +261 33 70 601 57
+
                 </li>
 
+
                 <li>
+
                     <i class="fa-solid fa-phone contact-icon"></i>
-                    <a href="tel:+261336194501">
-                        +261 33 61 945 01
-                    </a>
+
+                    +261 33 61 945 01
+
                 </li>
 
+
                 <li>
+
                     <i class="fa-solid fa-phone contact-icon"></i>
-                    <a href="tel:+261344286430">
-                        +261 34 42 864 30
-                    </a>
+
+                    +261 34 42 864 30
+
                 </li>
 
+
                 <li>
+
+                    <i class="fa-solid fa-phone contact-icon"></i>
+
+                    +261 38 83 124 39
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-phone contact-icon"></i>
+
+                    +261 37 90 843 03
+
+                </li>
+
+
+                <li>
+
                     <i class="fa-solid fa-location-dot contact-icon"></i>
+
                     TSIHOMBE-Ville, Madagascar
+
                 </li>
 
             </ul>
 
         </div>
+
 
 
         <div class="cta-box">
@@ -1195,13 +3143,16 @@ FOOTER
             </h3>
 
             <p>
-                Discutons de vos idées et construisons
-                ensemble des solutions durables.
+                Discutons de vos idées et construisons ensemble des solutions durables.
             </p>
 
             <a
                 href="mailto:ravelosonjuvenal78@gmail.com"
-                class="btn-primary">
+                class="btn-primary"
+                style="
+                    display:block;
+                    text-align:center;
+                ">
 
                 ME CONTACTER
 
@@ -1216,25 +3167,305 @@ FOOTER
 
     <div class="footer-bottom">
 
-        <span>
-            © 2026 RAVELOSON Juvenal.
-            Tous droits réservés.
-        </span>
-
-        <span>
-            DIGITAL ARCHITECT / MADAGASCAR
-        </span>
+        © 2026 RAVELOSON Juvenal.
+        Tous droits réservés.
 
     </div>
 
 </footer>
 
 
-<!-- =========================================================
-SCRIPT
-========================================================= -->
 
-<script src="script.js"></script>
+<script>
 
+/* =========================================================
+   HERO BACKGROUND — IMAGE UNIQUE
+   Pas de changement automatique d'image.
+========================================================= */
+
+const heroBackground = document.querySelector('.hero-bg.active');
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+const translations = {
+
+    fr: {
+
+        nav_home:
+            "ACCUEIL",
+
+        nav_expertise:
+            "EXPERTISE",
+
+        nav_tech:
+            "TECH STACK",
+
+        nav_solutions:
+            "SOLUTIONS",
+
+        nav_process:
+            "PROCESS",
+
+        nav_about:
+            "À PROPOS",
+
+        nav_contact:
+            "CONTACT",
+
+        download_cv:
+            "TÉLÉCHARGER CV",
+
+        hello:
+            "Bonjour, je suis",
+
+        hero_description:
+            "J'accompagne les entreprises dans leur transformation numérique grâce à des solutions innovantes, performantes et sécurisées.",
+
+        projects:
+            "DÉCOUVRIR MES PROJETS",
+
+        contact_me:
+            "ME CONTACTER",
+
+        expertise_title:
+            "EXPERTISE",
+
+        expertise_sub:
+            "Une expertise complète au service de votre transformation digitale."
+
+    },
+
+
+    en: {
+
+        nav_home:
+            "HOME",
+
+        nav_expertise:
+            "EXPERTISE",
+
+        nav_tech:
+            "TECH STACK",
+
+        nav_solutions:
+            "SOLUTIONS",
+
+        nav_process:
+            "PROCESS",
+
+        nav_about:
+            "ABOUT",
+
+        nav_contact:
+            "CONTACT",
+
+        download_cv:
+            "DOWNLOAD CV",
+
+        hello:
+            "Hello, I am",
+
+        hero_description:
+            "I help companies through their digital transformation with innovative, high-performance and secure solutions.",
+
+        projects:
+            "EXPLORE MY PROJECTS",
+
+        contact_me:
+            "GET IN TOUCH",
+
+        expertise_title:
+            "EXPERTISE",
+
+        expertise_sub:
+            "Complete expertise dedicated to your digital transformation."
+
+    }
+
+};
+
+
+function setLanguage(language) {
+
+    document
+        .querySelectorAll("[data-key]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.key;
+
+
+            if (
+                translations[language] &&
+                translations[language][key]
+            ) {
+
+                element.textContent =
+                    translations[language][key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll(".lang-btn")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const selectedButton =
+        document.getElementById(
+            "btn-" + language
+        );
+
+
+    if (selectedButton) {
+
+        selectedButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document.documentElement.lang =
+        language;
+
+}
+
+
+/* =========================================================
+   NAV ACTIVE
+========================================================= */
+
+const navLinks =
+    document.querySelectorAll(
+        "nav a"
+    );
+
+
+navLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        function() {
+
+            navLinks.forEach(item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            this.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+});
+
+
+</script>
+
+
+<script>
+/* =========================================================
+   HERO BACKGROUND — 5 IMAGES + AUTO ROTATION
+   Le background change automatiquement en suivant
+   les 5 miniatures affichées à droite.
+========================================================= */
+(function () {
+    const heroBackground = document.querySelector('.hero-background');
+    if (!heroBackground) return;
+
+    const backgroundLayers = heroBackground.querySelectorAll('.hero-bg');
+    const thumbnails = document.querySelectorAll('.hero-thumbs-only .thumb');
+
+    const backgrounds = [
+        "assets/images/web-develloppeur.png",
+        "assets/images/DATA SYSTEMS.png",
+        "assets/images/IT INFRASTRUCTURE.png",
+        "assets/images/DIGITAL TRANSFORMATION.png",
+        "assets/images/web-man.png"
+    ];
+
+    let currentIndex = 0;
+    let activeLayer = 0;
+    let timer = null;
+    const interval = 5000;
+
+    // Préchargement pour éviter un flash noir/blanc pendant le changement.
+    backgrounds.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    function updateThumbnails(index) {
+        thumbnails.forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+            thumb.setAttribute('aria-current', i === index ? 'true' : 'false');
+        });
+    }
+
+    function showBackground(index) {
+        if (index < 0 || index >= backgrounds.length) return;
+        if (index === currentIndex && backgroundLayers[activeLayer].classList.contains('active')) {
+            updateThumbnails(index);
+            return;
+        }
+
+        const nextLayer = activeLayer === 0 ? 1 : 0;
+        const next = backgroundLayers[nextLayer];
+        const current = backgroundLayers[activeLayer];
+
+        next.style.backgroundImage = `url("${backgrounds[index]}")`;
+        next.classList.add('active');
+        current.classList.remove('active');
+
+        activeLayer = nextLayer;
+        currentIndex = index;
+        updateThumbnails(index);
+    }
+
+    function nextBackground() {
+        showBackground((currentIndex + 1) % backgrounds.length);
+    }
+
+    function startAutoRotation() {
+        clearInterval(timer);
+        timer = setInterval(nextBackground, interval);
+    }
+
+    thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+            showBackground(index);
+            startAutoRotation();
+        });
+    });
+
+    // Pause au survol du bloc des miniatures, puis reprend ensuite.
+    const thumbsContainer = document.querySelector('.hero-thumbs-only');
+    if (thumbsContainer) {
+        thumbsContainer.addEventListener('mouseenter', () => clearInterval(timer));
+        thumbsContainer.addEventListener('mouseleave', startAutoRotation);
+    }
+
+    updateThumbnails(0);
+    startAutoRotation();
+})();
+</script>
 </body>
+
 </html>
