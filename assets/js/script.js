@@ -1,245 +1,324 @@
+```javascript
 /* =========================================================
    RAVELOSON Juvenal
    DIGITAL ARCHITECT
    MAIN JAVASCRIPT
 ========================================================= */
 
-"use strict";
-
-
-/* =========================================================
-   DOM READY
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    initMobileMenu();
-
-    initBackgroundCarousel();
-
-    initScrollNavigation();
-
-    initRevealAnimation();
-
-    initHeaderScroll();
-
-    initLanguage();
-
-});
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function initMobileMenu() {
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
     const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
+    const nav = document.querySelector("header nav");
 
-    if (!menuToggle || !mainNav) {
-        return;
+    if (menuToggle && nav) {
+
+        menuToggle.addEventListener("click", () => {
+            const opened = nav.classList.toggle("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                opened ? "true" : "false"
+            );
+
+            menuToggle.innerHTML = opened
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+
+                nav.classList.remove("active");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.innerHTML =
+                    '<i class="fa-solid fa-bars"></i>';
+            });
+        });
     }
 
 
-    menuToggle.addEventListener("click", () => {
+    /* =====================================================
+       HERO BACKGROUNDS
+    ===================================================== */
 
-        const isOpen =
-            mainNav.classList.toggle("active");
+    const backgrounds = [
+        "assets/images/web-develloppeur.png",
+        "assets/images/DATA SYSTEMS.png",
+        "assets/images/IT INFRASTRUCTURE.png",
+        "assets/images/DIGITAL TRANSFORMATION.png",
+        "assets/images/web-man.png"
+    ];
 
-        menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
+    const heroBackground = document.querySelector(".hero-background");
 
+    if (heroBackground) {
 
-        menuToggle.innerHTML = isOpen
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
+        /* Remove existing backgrounds */
+        heroBackground.innerHTML = "";
 
-    });
+        /* Create all 5 background layers */
+        backgrounds.forEach((image, index) => {
 
+            const layer = document.createElement("div");
 
-    const navLinks =
-        mainNav.querySelectorAll("a");
+            layer.className =
+                "hero-bg" +
+                (index === 0 ? " active" : "");
 
+            layer.dataset.bgIndex = index;
 
-    navLinks.forEach(link => {
+            layer.style.backgroundImage =
+                `url("${image}")`;
 
-        link.addEventListener("click", () => {
-
-            mainNav.classList.remove("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
+            heroBackground.appendChild(layer);
         });
-
-    });
-
-
-    document.addEventListener("click", event => {
-
-        const clickedInsideMenu =
-            mainNav.contains(event.target);
-
-        const clickedToggle =
-            menuToggle.contains(event.target);
+    }
 
 
-        if (
-            !clickedInsideMenu &&
-            !clickedToggle &&
-            mainNav.classList.contains("active")
-        ) {
-
-            mainNav.classList.remove("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
-        }
-
-    });
-
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth > 950) {
-
-            mainNav.classList.remove("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   BACKGROUND CAROUSEL
-========================================================= */
-
-function initBackgroundCarousel() {
-
-    const backgrounds =
-        document.querySelectorAll(".hero-bg");
+    /* =====================================================
+       HERO THUMBNAILS
+    ===================================================== */
 
     const thumbnails =
         document.querySelectorAll(".thumb");
 
+    const heroLayers =
+        document.querySelectorAll(".hero-bg");
 
-    if (!backgrounds.length || !thumbnails.length) {
-        return;
-    }
-
-
-    let currentIndex = 0;
-
-    let autoplay;
+    let currentBackground = 0;
+    let backgroundTimer;
 
 
     function changeBackground(index) {
 
-        if (
-            index < 0 ||
-            index >= backgrounds.length
-        ) {
-            return;
+        if (!heroLayers.length) return;
+
+        if (index < 0) {
+            index = heroLayers.length - 1;
         }
 
+        if (index >= heroLayers.length) {
+            index = 0;
+        }
 
-        backgrounds.forEach(bg => {
-
-            bg.classList.remove("active");
-
+        heroLayers.forEach(layer => {
+            layer.classList.remove("active");
         });
 
-
-        thumbnails.forEach(thumb => {
-
-            thumb.classList.remove("active");
-
-        });
-
-
-        backgrounds[index].classList.add("active");
-
-        thumbnails[index].classList.add("active");
-
-
-        currentIndex = index;
-
-    }
-
-
-    function nextBackground() {
-
-        const nextIndex =
-            (currentIndex + 1) %
-            backgrounds.length;
-
-        changeBackground(nextIndex);
-
-    }
-
-
-    function startAutoplay() {
-
-        clearInterval(autoplay);
-
-        autoplay =
-            setInterval(
-                nextBackground,
-                6000
+        const selected =
+            document.querySelector(
+                `.hero-bg[data-bg-index="${index}"]`
             );
 
+        if (selected) {
+            selected.classList.add("active");
+        }
+
+        thumbnails.forEach(thumb => {
+            thumb.classList.remove("active");
+        });
+
+        const activeThumb =
+            document.querySelector(
+                `.thumb[data-bg-index="${index}"]`
+            );
+
+        if (activeThumb) {
+            activeThumb.classList.add("active");
+        }
+
+        currentBackground = index;
     }
 
 
-    thumbnails.forEach((thumb, index) => {
+    function startBackgroundSlider() {
+
+        clearInterval(backgroundTimer);
+
+        backgroundTimer = setInterval(() => {
+
+            currentBackground++;
+
+            if (
+                currentBackground >=
+                backgrounds.length
+            ) {
+                currentBackground = 0;
+            }
+
+            changeBackground(currentBackground);
+
+        }, 7000);
+    }
+
+
+    thumbnails.forEach(thumb => {
 
         thumb.addEventListener("click", () => {
 
+            const index =
+                Number(
+                    thumb.dataset.bgIndex
+                );
+
             changeBackground(index);
 
-            startAutoplay();
-
+            startBackgroundSlider();
         });
 
     });
 
 
-    changeBackground(0);
+    /* Start */
+    if (heroLayers.length) {
+        changeBackground(0);
+        startBackgroundSlider();
+    }
 
-    startAutoplay();
 
-}
+    /* =====================================================
+       LANGUAGE
+    ===================================================== */
+
+    const translations = {
+
+        fr: {
+
+            nav_home: "ACCUEIL",
+            nav_expertise: "EXPERTISE",
+            nav_tech: "TECH STACK",
+            nav_solutions: "SOLUTIONS",
+            nav_process: "PROCESS",
+            nav_about: "À PROPOS",
+            nav_contact: "CONTACT",
+
+            download_cv: "TÉLÉCHARGER CV",
+
+            hello: "Bonjour, je suis",
+
+            hero_description:
+                "J'accompagne les entreprises dans leur transformation numérique grâce à des solutions innovantes, performantes et sécurisées.",
+
+            projects:
+                "DÉCOUVRIR MES PROJETS",
+
+            contact_me:
+                "ME CONTACTER",
+
+            expertise_title:
+                "EXPERTISE",
+
+            expertise_sub:
+                "Une expertise complète au service de votre transformation digitale."
+        },
+
+        en: {
+
+            nav_home: "HOME",
+            nav_expertise: "EXPERTISE",
+            nav_tech: "TECH STACK",
+            nav_solutions: "SOLUTIONS",
+            nav_process: "PROCESS",
+            nav_about: "ABOUT",
+            nav_contact: "CONTACT",
+
+            download_cv:
+                "DOWNLOAD CV",
+
+            hello:
+                "Hello, I am",
+
+            hero_description:
+                "I help companies accelerate their digital transformation through innovative, high-performance and secure solutions.",
+
+            projects:
+                "DISCOVER MY PROJECTS",
+
+            contact_me:
+                "CONTACT ME",
+
+            expertise_title:
+                "EXPERTISE",
+
+            expertise_sub:
+                "Complete expertise dedicated to your digital transformation."
+        }
+    };
 
 
-/* =========================================================
-   ACTIVE NAVIGATION ON SCROLL
-========================================================= */
+    window.setLanguage = function(language) {
 
-function initScrollNavigation() {
+        const dictionary =
+            translations[language];
+
+        if (!dictionary) return;
+
+        document
+            .querySelectorAll("[data-key]")
+            .forEach(element => {
+
+                const key =
+                    element.dataset.key;
+
+                if (
+                    dictionary[key] !== undefined
+                ) {
+                    element.textContent =
+                        dictionary[key];
+                }
+
+            });
+
+
+        document
+            .querySelectorAll(".lang-btn")
+            .forEach(button => {
+                button.classList.remove("active");
+            });
+
+
+        const selected =
+            document.getElementById(
+                `btn-${language}`
+            );
+
+        if (selected) {
+            selected.classList.add("active");
+        }
+
+
+        localStorage.setItem(
+            "raveloson-language",
+            language
+        );
+    };
+
+
+    const savedLanguage =
+        localStorage.getItem(
+            "raveloson-language"
+        );
+
+    if (
+        savedLanguage &&
+        translations[savedLanguage]
+    ) {
+        window.setLanguage(savedLanguage);
+    }
+
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
 
     const sections =
         document.querySelectorAll(
@@ -248,431 +327,178 @@ function initScrollNavigation() {
 
     const navLinks =
         document.querySelectorAll(
-            "#mainNav a[href^='#']"
+            "header nav a"
         );
 
 
-    if (!sections.length || !navLinks.length) {
-        return;
-    }
+    function updateActiveNavigation() {
 
+        let current = "";
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+        sections.forEach(section => {
 
-                entries.forEach(entry => {
+            const top =
+                section.offsetTop -
+                150;
 
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
+            const height =
+                section.offsetHeight;
 
-
-                    const id =
-                        entry.target.getAttribute("id");
-
-
-                    navLinks.forEach(link => {
-
-                        link.classList.remove("active");
-
-
-                        const href =
-                            link.getAttribute("href");
-
-
-                        if (
-                            href === `#${id}`
-                        ) {
-
-                            link.classList.add(
-                                "active"
-                            );
-
-                        }
-
-                    });
-
-                });
-
-            },
-            {
-                rootMargin:
-                    "-35% 0px -55% 0px",
-
-                threshold: 0
+            if (
+                window.scrollY >= top &&
+                window.scrollY <
+                top + height
+            ) {
+                current =
+                    section.id;
             }
-        );
-
-
-    sections.forEach(section => {
-
-        observer.observe(section);
-
-    });
-
-}
-
-
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
-
-function initRevealAnimation() {
-
-    const elements =
-        document.querySelectorAll(".reveal");
-
-
-    if (!elements.length) {
-        return;
-    }
-
-
-    if (
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
-
-        elements.forEach(element => {
-
-            element.classList.add("visible");
 
         });
 
-        return;
 
-    }
+        navLinks.forEach(link => {
 
+            link.classList.remove(
+                "active"
+            );
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+            const target =
+                link.getAttribute("href");
 
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
+            if (
+                target === `#${current}`
+            ) {
+                link.classList.add(
+                    "active"
+                );
             }
-        );
 
-
-    elements.forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-}
-
-
-/* =========================================================
-   HEADER SCROLL EFFECT
-========================================================= */
-
-function initHeaderScroll() {
-
-    const header =
-        document.getElementById(
-            "siteHeader"
-        );
-
-
-    if (!header) {
-        return;
-    }
-
-
-    function updateHeader() {
-
-        if (window.scrollY > 30) {
-
-            header.classList.add(
-                "scrolled"
-            );
-
-        } else {
-
-            header.classList.remove(
-                "scrolled"
-            );
-
-        }
-
+        });
     }
 
 
     window.addEventListener(
         "scroll",
-        updateHeader,
-        {
-            passive: true
-        }
+        updateActiveNavigation,
+        { passive: true }
     );
 
-
-    updateHeader();
-
-}
+    updateActiveNavigation();
 
 
-/* =========================================================
-   LANGUAGE SYSTEM
-========================================================= */
+    /* =====================================================
+       REVEAL ANIMATION
+    ===================================================== */
 
-const translations = {
-
-    fr: {
-
-        nav_home: "ACCUEIL",
-
-        nav_expertise: "EXPERTISE",
-
-        nav_tech: "TECH STACK",
-
-        nav_solutions: "SOLUTIONS",
-
-        nav_process: "PROCESS",
-
-        nav_about: "À PROPOS",
-
-        nav_contact: "CONTACT",
-
-        download_cv: "TÉLÉCHARGER CV",
-
-        hello: "Bonjour, je suis",
-
-        hero_description:
-            "J'accompagne les entreprises dans leur transformation numérique grâce à des solutions innovantes, performantes et sécurisées.",
-
-        projects:
-            "DÉCOUVRIR MES PROJETS",
-
-        contact_me:
-            "ME CONTACTER",
-
-        expertise_title:
-            "EXPERTISE",
-
-        expertise_sub:
-            "Une expertise complète au service de votre transformation digitale."
-
-    },
-
-
-    en: {
-
-        nav_home: "HOME",
-
-        nav_expertise: "EXPERTISE",
-
-        nav_tech: "TECH STACK",
-
-        nav_solutions: "SOLUTIONS",
-
-        nav_process: "PROCESS",
-
-        nav_about: "ABOUT",
-
-        nav_contact: "CONTACT",
-
-        download_cv: "DOWNLOAD CV",
-
-        hello: "Hello, I am",
-
-        hero_description:
-            "I help businesses accelerate their digital transformation through innovative, high-performance and secure solutions.",
-
-        projects:
-            "DISCOVER MY PROJECTS",
-
-        contact_me:
-            "CONTACT ME",
-
-        expertise_title:
-            "EXPERTISE",
-
-        expertise_sub:
-            "Complete expertise to support your digital transformation."
-
-    }
-
-};
-
-
-/* =========================================================
-   SET LANGUAGE
-========================================================= */
-
-function setLanguage(language) {
-
-    if (
-        !translations[language]
-    ) {
-        return;
-    }
-
-
-    const elements =
+    const revealElements =
         document.querySelectorAll(
-            "[data-key]"
+            ".reveal"
         );
 
 
-    elements.forEach(element => {
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
 
-        const key =
-            element.getAttribute(
-                "data-key"
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
             );
 
 
-        if (
-            translations[language][key]
-        ) {
-
-            element.textContent =
-                translations[language][key];
-
-        }
-
-    });
-
-
-    const frButton =
-        document.getElementById(
-            "btn-fr"
-        );
-
-    const enButton =
-        document.getElementById(
-            "btn-en"
-        );
-
-
-    if (frButton) {
-
-        frButton.classList.toggle(
-            "active",
-            language === "fr"
-        );
-
-    }
-
-
-    if (enButton) {
-
-        enButton.classList.toggle(
-            "active",
-            language === "en"
-        );
-
-    }
-
-
-    document.documentElement.lang =
-        language;
-
-
-    localStorage.setItem(
-        "raveloson-language",
-        language
-    );
-
-}
-
-
-/* =========================================================
-   LOAD SAVED LANGUAGE
-========================================================= */
-
-function initLanguage() {
-
-    const savedLanguage =
-        localStorage.getItem(
-            "raveloson-language"
-        );
-
-
-    if (
-        savedLanguage === "en" ||
-        savedLanguage === "fr"
-    ) {
-
-        setLanguage(
-            savedLanguage
-        );
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
 
     } else {
 
-        setLanguage("fr");
+        revealElements.forEach(element => {
+            element.classList.add(
+                "visible"
+            );
+        });
 
     }
 
-}
 
+    /* =====================================================
+       IMAGE ERROR PROTECTION
+    ===================================================== */
 
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
+    document
+        .querySelectorAll("img")
+        .forEach(img => {
 
-document.addEventListener(
-    "keydown",
-    event => {
+            img.addEventListener(
+                "error",
+                () => {
 
-        if (event.key !== "Escape") {
-            return;
-        }
+                    img.style.display =
+                        "none";
 
-
-        const menuToggle =
-            document.getElementById(
-                "menuToggle"
+                }
             );
 
-        const mainNav =
-            document.getElementById(
-                "mainNav"
+        });
+
+
+    /* =====================================================
+       PREVENT EMPTY CARD LINKS
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            'a[href="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+                    event.preventDefault();
+                }
             );
 
+        });
 
-        if (
-            menuToggle &&
-            mainNav &&
-            mainNav.classList.contains("active")
-        ) {
 
-            mainNav.classList.remove(
-                "active"
-            );
+    /* =====================================================
+       YEAR
+    ===================================================== */
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+    document
+        .querySelectorAll(
+            "[data-current-year]"
+        )
+        .forEach(element => {
 
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
+            element.textContent =
+                new Date().getFullYear();
 
-        }
+        });
 
-    }
-);
+});
+```
