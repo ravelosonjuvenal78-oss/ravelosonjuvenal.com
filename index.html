@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +10,6 @@
         name="description"
         content="RAVELOSON Juvenal — Digital Architect. Web Development, Data Systems, IT Infrastructure & Digital Transformation."
     >
-
-    <meta name="theme-color" content="#05080d">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,21 +33,15 @@
 HEADER
 ========================================================= -->
 
-<header id="siteHeader">
+<header>
 
-    <a href="#accueil" class="logo" aria-label="RAVELOSON Digital Architect">
-
+    <a href="#accueil" class="logo" aria-label="RAVELOSON Juvenal">
         RAVELOSON
-
         <span>DIGITAL ARCHITECT</span>
-
     </a>
 
-
-    <nav id="mainNav" aria-label="Navigation principale">
-
+    <nav id="mainNav">
         <ul>
-
             <li>
                 <a href="#accueil" class="active" data-key="nav_home">
                     ACCUEIL
@@ -92,16 +83,12 @@ HEADER
                     CONTACT
                 </a>
             </li>
-
         </ul>
-
     </nav>
-
 
     <div class="nav-actions">
 
         <div class="lang-switch">
-
             <button
                 type="button"
                 class="lang-btn active"
@@ -117,31 +104,26 @@ HEADER
                 onclick="setLanguage('en')">
                 EN
             </button>
-
         </div>
-
 
         <a
             href="CV_RAVELOSON_Juvenal.pdf"
             download
-            class="btn-cv"
-            aria-label="Télécharger le CV">
+            class="btn-cv">
 
             <i class="fa-solid fa-download"></i>
 
             <span data-key="download_cv">
                 TÉLÉCHARGER CV
             </span>
-
         </a>
-
 
         <button
             type="button"
             id="menuToggle"
             aria-label="Ouvrir le menu"
-            aria-controls="mainNav"
-            aria-expanded="false">
+            aria-expanded="false"
+            aria-controls="mainNav">
 
             <i class="fa-solid fa-bars"></i>
 
@@ -158,10 +140,9 @@ HERO
 
 <main>
 
-<section
-    id="accueil"
-    class="hero">
+<section id="accueil" class="hero">
 
+    <!-- IMPORTANT : BACKGROUND -->
     <div class="hero-background" aria-hidden="true">
 
         <div
@@ -198,9 +179,7 @@ HERO
 
 
     <div class="hero-ambient"></div>
-
     <div class="hero-light"></div>
-
     <div class="hero-glow"></div>
 
 
@@ -234,33 +213,26 @@ HERO
 
             <div class="hero-btns">
 
-                <a
-                    href="#solutions"
-                    class="btn-primary">
-
+                <a href="#solutions" class="btn-primary">
                     <span data-key="projects">
                         DÉCOUVRIR MES PROJETS
                     </span>
 
                     <i class="fa-solid fa-arrow-right"></i>
-
                 </a>
 
-
-                <a
-                    href="#contact"
-                    class="btn-outline">
-
+                <a href="#contact" class="btn-outline">
                     <span data-key="contact_me">
                         ME CONTACTER
                     </span>
 
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
                 </a>
 
             </div>
 
+
+            <!-- SOCIAL -->
 
             <div class="social-links">
 
@@ -329,15 +301,11 @@ HERO
 
         <!-- DIGITAL HUD -->
 
-        <div
-            class="hero-space-hud reveal"
-            aria-hidden="true">
+        <div class="hero-space-hud reveal" aria-hidden="true">
 
             <div class="hud-topline">
 
-                <span>
-                    DIGITAL ARCHITECTURE
-                </span>
+                <span>DIGITAL ARCHITECTURE</span>
 
                 <span class="hud-status">
                     <i></i>
@@ -366,21 +334,17 @@ HERO
 
 
             <div class="hud-lines">
-
                 <div style="width:92%"></div>
-                <div style="width:74%"></div>
-                <div style="width:61%"></div>
+                <div style="width:76%"></div>
+                <div style="width:58%"></div>
                 <div style="width:82%"></div>
-
             </div>
 
 
             <div class="hud-corner">
-
                 DIGITAL SYSTEM<br>
                 ARCH / 001<br>
                 STATUS: READY
-
             </div>
 
         </div>
@@ -398,7 +362,7 @@ HERO
                     type="button"
                     class="thumb active"
                     data-bg-index="0"
-                    aria-label="Background Web Development"
+                    aria-label="Background 1"
                     style="background-image:url('assets/images/web-develloppeur.png');">
                 </button>
 
@@ -406,7 +370,7 @@ HERO
                     type="button"
                     class="thumb"
                     data-bg-index="1"
-                    aria-label="Background Data Systems"
+                    aria-label="Background 2"
                     style="background-image:url('assets/images/DATA SYSTEMS.png');">
                 </button>
 
@@ -414,7 +378,7 @@ HERO
                     type="button"
                     class="thumb"
                     data-bg-index="2"
-                    aria-label="Background IT Infrastructure"
+                    aria-label="Background 3"
                     style="background-image:url('assets/images/IT INFRASTRUCTURE.png');">
                 </button>
 
@@ -422,7 +386,7 @@ HERO
                     type="button"
                     class="thumb"
                     data-bg-index="3"
-                    aria-label="Background Digital Transformation"
+                    aria-label="Background 4"
                     style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');">
                 </button>
 
@@ -430,7 +394,7 @@ HERO
                     type="button"
                     class="thumb"
                     data-bg-index="4"
-                    aria-label="Background Web"
+                    aria-label="Background 5"
                     style="background-image:url('assets/images/web-man.png');">
                 </button>
 
@@ -447,20 +411,13 @@ HERO
 EXPERTISE
 ========================================================= -->
 
-<section
-    id="expertise"
-    class="content-section">
+<section id="expertise" class="content-section">
 
     <div class="section-header">
 
         <div class="section-title">
-
-            <span data-key="expertise_title">
-                EXPERTISE
-            </span>
-
+            <span data-key="expertise_title">EXPERTISE</span>
             <span>///</span>
-
         </div>
 
         <div
@@ -481,9 +438,7 @@ EXPERTISE
             class="card-expertise reveal"
             style="background-image:url('assets/images/web-develloppeur.png');">
 
-            <span class="card-num">
-                01
-            </span>
+            <span class="card-num">01</span>
 
             <div class="card-content">
 
@@ -491,12 +446,11 @@ EXPERTISE
                     <i class="fa-solid fa-code"></i>
                 </div>
 
-                <h3>
-                    Web Development
-                </h3>
+                <h3>Web Development</h3>
 
                 <p>
-                    Applications web modernes, performantes et sur mesure.
+                    Applications web modernes,
+                    performantes et sur mesure.
                 </p>
 
                 <a href="#contact" class="card-link">
@@ -512,9 +466,7 @@ EXPERTISE
             class="card-expertise reveal"
             style="background-image:url('assets/images/DATA SYSTEMS.png');">
 
-            <span class="card-num">
-                02
-            </span>
+            <span class="card-num">02</span>
 
             <div class="card-content">
 
@@ -522,12 +474,11 @@ EXPERTISE
                     <i class="fa-solid fa-database"></i>
                 </div>
 
-                <h3>
-                    Data Systems
-                </h3>
+                <h3>Data Systems</h3>
 
                 <p>
-                    Gestion et analyse des données pour des décisions éclairées.
+                    Gestion et analyse des données
+                    pour des décisions éclairées.
                 </p>
 
                 <a href="#contact" class="card-link">
@@ -543,9 +494,7 @@ EXPERTISE
             class="card-expertise reveal"
             style="background-image:url('assets/images/IT INFRASTRUCTURE.png');">
 
-            <span class="card-num">
-                03
-            </span>
+            <span class="card-num">03</span>
 
             <div class="card-content">
 
@@ -553,12 +502,11 @@ EXPERTISE
                     <i class="fa-solid fa-server"></i>
                 </div>
 
-                <h3>
-                    IT Infrastructure
-                </h3>
+                <h3>IT Infrastructure</h3>
 
                 <p>
-                    Infrastructures fiables, sécurisées et évolutives.
+                    Infrastructures fiables,
+                    sécurisées et évolutives.
                 </p>
 
                 <a href="#contact" class="card-link">
@@ -574,9 +522,7 @@ EXPERTISE
             class="card-expertise reveal"
             style="background-image:url('assets/images/DIGITAL TRANSFORMATION.png');">
 
-            <span class="card-num">
-                04
-            </span>
+            <span class="card-num">04</span>
 
             <div class="card-content">
 
@@ -584,12 +530,11 @@ EXPERTISE
                     <i class="fa-solid fa-cubes"></i>
                 </div>
 
-                <h3>
-                    Digital Transformation
-                </h3>
+                <h3>Digital Transformation</h3>
 
                 <p>
-                    Solutions digitales innovantes pour accélérer votre croissance.
+                    Solutions digitales innovantes
+                    pour accélérer votre croissance.
                 </p>
 
                 <a href="#contact" class="card-link">
@@ -609,9 +554,7 @@ EXPERTISE
 TECH STACK
 ========================================================= -->
 
-<section
-    id="techstack"
-    class="content-section">
+<section id="techstack" class="content-section">
 
     <div class="section-header">
 
@@ -621,7 +564,8 @@ TECH STACK
         </div>
 
         <div class="section-sub">
-            Technologies et outils que j'utilise pour construire des solutions robustes.
+            Technologies et outils que j'utilise
+            pour construire des solutions robustes.
         </div>
 
     </div>
@@ -632,9 +576,7 @@ TECH STACK
 
         <article class="tech-card reveal">
 
-            <h3>
-                Frontend
-            </h3>
+            <h3>Frontend</h3>
 
             <div class="tech-icons">
 
@@ -654,9 +596,7 @@ TECH STACK
 
         <article class="tech-card reveal">
 
-            <h3>
-                Backend
-            </h3>
+            <h3>Backend</h3>
 
             <div class="tech-icons">
 
@@ -675,9 +615,7 @@ TECH STACK
 
         <article class="tech-card reveal">
 
-            <h3>
-                Database
-            </h3>
+            <h3>Database</h3>
 
             <div class="tech-icons">
 
@@ -696,9 +634,7 @@ TECH STACK
 
         <article class="tech-card reveal">
 
-            <h3>
-                Infrastructure
-            </h3>
+            <h3>Infrastructure</h3>
 
             <div class="tech-icons">
 
@@ -725,9 +661,7 @@ TECH STACK
 SOLUTIONS
 ========================================================= -->
 
-<section
-    id="solutions"
-    class="content-section">
+<section id="solutions" class="content-section">
 
     <div class="section-header">
 
@@ -753,19 +687,7 @@ SOLUTIONS
 
             <div class="about-card-content">
 
-                <span class="about-label">
-                    DIGITAL ARCHITECT
-                </span>
-
-                <h3>
-                    À PROPOS DE MOI
-                </h3>
-
-                <p>
-                    Passionné par la technologie, je conçois des solutions
-                    digitales modernes, fiables et adaptées aux besoins
-                    des entreprises.
-                </p>
+                <h3>À PROPOS DE MOI</h3>
 
                 <a href="#contact" class="card-link">
                     EN SAVOIR PLUS →
@@ -782,12 +704,11 @@ SOLUTIONS
                 <i class="fa-solid fa-chart-pie"></i>
             </div>
 
-            <h3>
-                DATA SYSTEMS
-            </h3>
+            <h3>DATA SYSTEMS</h3>
 
             <p>
-                Plateformes de données intelligentes et reporting avancé.
+                Plateformes de données intelligentes
+                et reporting avancé.
             </p>
 
         </article>
@@ -799,12 +720,11 @@ SOLUTIONS
                 <i class="fa-solid fa-network-wired"></i>
             </div>
 
-            <h3>
-                IT INFRASTRUCTURE
-            </h3>
+            <h3>IT INFRASTRUCTURE</h3>
 
             <p>
-                Conception, déploiement et maintenance d'infrastructures sécurisées.
+                Conception, déploiement et maintenance
+                d'infrastructures sécurisées.
             </p>
 
         </article>
@@ -816,12 +736,11 @@ SOLUTIONS
                 <i class="fa-solid fa-diagram-project"></i>
             </div>
 
-            <h3>
-                DIGITAL TRANSFORMATION
-            </h3>
+            <h3>DIGITAL TRANSFORMATION</h3>
 
             <p>
-                Accompagnement dans votre transformation digitale de bout en bout.
+                Accompagnement dans votre transformation
+                digitale de bout en bout.
             </p>
 
         </article>
@@ -835,9 +754,7 @@ SOLUTIONS
 PROCESS
 ========================================================= -->
 
-<section
-    id="process"
-    class="content-section">
+<section id="process" class="content-section">
 
     <div class="section-header">
 
@@ -847,7 +764,8 @@ PROCESS
         </div>
 
         <div class="section-sub">
-            Une méthodologie claire pour garantir la réussite de vos projets.
+            Une méthodologie claire pour garantir
+            la réussite de vos projets.
         </div>
 
     </div>
@@ -864,12 +782,11 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>
-                    Comprendre
-                </h4>
+                <h4>Comprendre</h4>
 
                 <p>
-                    Analyse des besoins et définition des objectifs.
+                    Analyse des besoins et définition
+                    des objectifs.
                 </p>
 
             </div>
@@ -885,12 +802,11 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>
-                    Architecturer
-                </h4>
+                <h4>Architecturer</h4>
 
                 <p>
-                    Conception de l'architecture et planification technique.
+                    Conception de l'architecture
+                    et planification technique.
                 </p>
 
             </div>
@@ -906,12 +822,11 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>
-                    Construire
-                </h4>
+                <h4>Construire</h4>
 
                 <p>
-                    Développement itératif avec qualité et tests continus.
+                    Développement itératif avec qualité
+                    et tests continus.
                 </p>
 
             </div>
@@ -927,12 +842,11 @@ PROCESS
 
             <div class="step-info">
 
-                <h4>
-                    Améliorer
-                </h4>
+                <h4>Améliorer</h4>
 
                 <p>
-                    Déploiement, suivi et amélioration continue.
+                    Déploiement, suivi et amélioration
+                    continue.
                 </p>
 
             </div>
@@ -948,9 +862,7 @@ PROCESS
 CONTACT
 ========================================================= -->
 
-<section
-    id="contact"
-    class="content-section">
+<section id="contact" class="content-section">
 
     <div class="section-header">
 
@@ -960,7 +872,7 @@ CONTACT
         </div>
 
         <div class="section-sub">
-            Parlons de votre prochain projet digital.
+            Un projet ? Une idée ? Parlons-en.
         </div>
 
     </div>
@@ -969,8 +881,7 @@ CONTACT
     <div class="contact-grid">
 
 
-        <div class="contact-panel reveal">
-
+        <div class="contact-panel">
 
             <div class="contact-item">
 
@@ -979,15 +890,11 @@ CONTACT
                 </div>
 
                 <div>
-
-                    <small>
-                        EMAIL
-                    </small>
+                    <small>EMAIL</small>
 
                     <a href="mailto:ravelosonjuvenal78@gmail.com">
                         ravelosonjuvenal78@gmail.com
                     </a>
-
                 </div>
 
             </div>
@@ -1000,15 +907,11 @@ CONTACT
                 </div>
 
                 <div>
-
-                    <small>
-                        TÉLÉPHONE
-                    </small>
+                    <small>TÉLÉPHONE</small>
 
                     <a href="tel:+261337060157">
                         +261 33 70 601 57
                     </a>
-
                 </div>
 
             </div>
@@ -1021,15 +924,28 @@ CONTACT
                 </div>
 
                 <div>
-
-                    <small>
-                        TÉLÉPHONE
-                    </small>
+                    <small>TÉLÉPHONE</small>
 
                     <a href="tel:+261336194501">
                         +261 33 61 945 01
                     </a>
+                </div>
 
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+
+                <div>
+                    <small>TÉLÉPHONE</small>
+
+                    <a href="tel:+261344286430">
+                        +261 34 42 864 30
+                    </a>
                 </div>
 
             </div>
@@ -1042,15 +958,11 @@ CONTACT
                 </div>
 
                 <div>
-
-                    <small>
-                        LOCALISATION
-                    </small>
+                    <small>LOCALISATION</small>
 
                     <span>
                         TSIHOMBE-Ville, Madagascar
                     </span>
-
                 </div>
 
             </div>
@@ -1058,21 +970,21 @@ CONTACT
         </div>
 
 
-        <div class="contact-cta reveal">
+        <div class="contact-cta">
 
             <span>
-                DISPONIBILITÉ
+                DIGITAL ARCHITECTURE
             </span>
 
             <h3>
                 CONSTRUISONS<br>
-                LE FUTUR.
+                VOTRE FUTUR.
             </h3>
 
             <p>
-                Discutons de vos idées et construisons ensemble
-                des solutions digitales durables, performantes
-                et sécurisées.
+                Discutons de vos idées et construisons
+                ensemble des solutions digitales
+                performantes, sécurisées et durables.
             </p>
 
             <a
@@ -1106,15 +1018,9 @@ FOOTER
         <div class="footer-col">
 
             <div class="logo">
-
                 RAVELOSON
-
-                <span>
-                    DIGITAL ARCHITECT
-                </span>
-
+                <span>DIGITAL ARCHITECT</span>
             </div>
-
 
             <p class="footer-description">
                 Passionné par la technologie et l'innovation,
@@ -1189,46 +1095,32 @@ FOOTER
 
         <div class="footer-col">
 
-            <h4>
-                NAVIGATION
-            </h4>
+            <h4>NAVIGATION</h4>
 
             <ul>
 
                 <li>
-                    <a href="#accueil">
-                        Accueil
-                    </a>
+                    <a href="#accueil">Accueil</a>
                 </li>
 
                 <li>
-                    <a href="#expertise">
-                        Expertise
-                    </a>
+                    <a href="#expertise">Expertise</a>
                 </li>
 
                 <li>
-                    <a href="#techstack">
-                        Tech Stack
-                    </a>
+                    <a href="#techstack">Tech Stack</a>
                 </li>
 
                 <li>
-                    <a href="#solutions">
-                        Solutions
-                    </a>
+                    <a href="#solutions">Solutions</a>
                 </li>
 
                 <li>
-                    <a href="#process">
-                        Process
-                    </a>
+                    <a href="#process">Process</a>
                 </li>
 
                 <li>
-                    <a href="#contact">
-                        Contact
-                    </a>
+                    <a href="#contact">Contact</a>
                 </li>
 
             </ul>
@@ -1238,27 +1130,14 @@ FOOTER
 
         <div class="footer-col">
 
-            <h4>
-                EXPERTISE
-            </h4>
+            <h4>EXPERTISE</h4>
 
             <ul>
 
-                <li>
-                    Web Development
-                </li>
-
-                <li>
-                    Data Systems
-                </li>
-
-                <li>
-                    IT Infrastructure
-                </li>
-
-                <li>
-                    Digital Transformation
-                </li>
+                <li>Web Development</li>
+                <li>Data Systems</li>
+                <li>IT Infrastructure</li>
+                <li>Digital Transformation</li>
 
             </ul>
 
@@ -1267,9 +1146,7 @@ FOOTER
 
         <div class="footer-col">
 
-            <h4>
-                CONTACT
-            </h4>
+            <h4>CONTACT</h4>
 
             <ul>
 
@@ -1302,20 +1179,6 @@ FOOTER
                 </li>
 
                 <li>
-                    <i class="fa-solid fa-phone contact-icon"></i>
-                    <a href="tel:+261388312439">
-                        +261 38 83 124 39
-                    </a>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-phone contact-icon"></i>
-                    <a href="tel:+261379084303">
-                        +261 37 90 843 03
-                    </a>
-                </li>
-
-                <li>
                     <i class="fa-solid fa-location-dot contact-icon"></i>
                     TSIHOMBE-Ville, Madagascar
                 </li>
@@ -1327,17 +1190,13 @@ FOOTER
 
         <div class="cta-box">
 
-            <span class="cta-label">
-                AVAILABLE
-            </span>
-
             <h3>
                 DISPONIBLE POUR VOS PROJETS
             </h3>
 
             <p>
-                Discutons de vos idées et construisons ensemble
-                des solutions durables.
+                Discutons de vos idées et construisons
+                ensemble des solutions durables.
             </p>
 
             <a
@@ -1358,17 +1217,22 @@ FOOTER
     <div class="footer-bottom">
 
         <span>
-            © 2026 RAVELOSON Juvenal. Tous droits réservés.
+            © 2026 RAVELOSON Juvenal.
+            Tous droits réservés.
         </span>
 
         <span>
-            DIGITAL ARCHITECT / 001
+            DIGITAL ARCHITECT / MADAGASCAR
         </span>
 
     </div>
 
 </footer>
 
+
+<!-- =========================================================
+SCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
